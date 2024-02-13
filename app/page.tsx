@@ -15,8 +15,11 @@ export default function Home() {
       {/* <Content /> */}
       <LampDemo />
       {/* <BackgroundBeamsDemo /> */}
-      <TabsDemo />
-      <Details />
+      <div className="h-auto w-full bg-slate-950">
+        <TabsDemo />
+      </div>
+
+      {/* <Details /> */}
     </>
   );
 }
