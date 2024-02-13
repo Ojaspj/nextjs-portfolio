@@ -6,8 +6,8 @@ import {
   BackgroundBeamsDemo,
 } from "@/src/components/ui/bg-beams";
 import { LampDemo } from "@/src/components/ui/lamp";
-import { Tabs } from "@/src/components/ui/tabs";
-import { FaArrowDown, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaReact, FaPython, FaLaptopCode } from "react-icons/fa";
+import { SiFlutter } from "react-icons/si";
 
 export default function Home() {
   return (
@@ -15,8 +15,23 @@ export default function Home() {
       {/* <Content /> */}
       <LampDemo />
       {/* <BackgroundBeamsDemo /> */}
-      <TabsDemo />
-      <Details />
+      <div className="h-auto w-full bg-slate-950 relative">
+        <div className=" absolute top-60 left-32">
+          <FaReact className="text-slate-700" size={100} />
+        </div>
+
+        <div className=" absolute top-96 left-32">
+          <FaLaptopCode className="text-slate-700 " size={100} />
+        </div>
+
+        <div className=" absolute left-32 bottom-40 ">
+          <SiFlutter className="text-slate-700 " size={100} />
+        </div>
+
+        <TabsDemo />
+      </div>
+
+      {/* <Details /> */}
     </>
   );
 }

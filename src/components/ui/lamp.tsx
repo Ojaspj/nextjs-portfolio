@@ -20,8 +20,6 @@ export function LampDemo() {
           }}
           className="relative h-auto mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center font-medium tracking-tight text-slate-300 flex items-center justify-center "
         >
-          {/* Build lamps <br /> the right way */}
-
           <div className="pt-14">
             <p className="uppercase text-md relative z-10">Hello World!</p>
             <h1 className=" py-4 text-[70px] font-bold ">
@@ -38,7 +36,7 @@ export function LampDemo() {
         </motion.h1>
       </LampContainer>
 
-      <div className=" relative z-10 flex items-center justify-center border">
+      <div className=" relative z-10 flex items-center justify-center ">
         <div className=" absolute bottom-4  text-white ">
           {/* arrow down */}
           <div className="mb-6 flex flex-col items-center justify-center">
@@ -92,7 +90,7 @@ export const LampContainer = ({
   return (
     <div
       className={cn(
-        "relative flex min-h-screen flex-col items-center justify-center overflow-hidden  bg-slate-950 w-full rounded-md ",
+        "relative flex min-h-screen flex-col items-center justify-center overflow-hidden  bg-slate-950 w-full ",
         className
       )}
     >
