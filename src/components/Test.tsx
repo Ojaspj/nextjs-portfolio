@@ -44,8 +44,8 @@ export function TabsDemo() {
       value: "projects",
       content: (
         <BackgroundGradient>
-          <div className="w-full overflow-hidden relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
-            <p>Projects</p>
+          <div className="w-full overflow-scroll relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
+            <p>PROJECTS</p>
 
             <AnimatedPinDemo />
           </div>
@@ -58,7 +58,7 @@ export function TabsDemo() {
       content: (
         <BackgroundGradient>
           <div className="w-full overflow-hidden relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
-            <p>Experience</p>
+            <p className="uppercase">Experience</p>
           </div>
         </BackgroundGradient>
       ),
