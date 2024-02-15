@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Tabs } from "./ui/tabs";
 import { BackgroundGradient } from "./ui/border-gradient";
+import { Meteors } from "./ui/bg-meteors";
 
 export function TabsDemo() {
   const tabs = [
@@ -32,7 +33,9 @@ export function TabsDemo() {
               electrifying ride through the fascinating universe of frontend
               development!
             </h1>
+            <Meteors number={30} />
           </div>
+
         </BackgroundGradient>
       ),
     },
