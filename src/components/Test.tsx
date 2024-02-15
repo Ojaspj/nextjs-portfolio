@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Tabs } from "./ui/tabs";
 import { BackgroundGradient } from "./ui/border-gradient";
 import { Meteors } from "./ui/bg-meteors";
+import { AnimatedPinDemo } from "./PinDemo";
 
 export function TabsDemo() {
   const tabs = [
@@ -13,7 +14,7 @@ export function TabsDemo() {
       content: (
         <BackgroundGradient>
           <div className="w-full overflow-scroll scrollbar-width:none relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
-            <p>About</p>
+            <p className="uppercase">About me</p>
             <h1 className="text-xl font-normal text-justify tracking-wider my-8">
               Hey there! I'm{" "}
               <span className="font-bold text-purple-400">Prajwal Joshi</span>,
@@ -35,7 +36,6 @@ export function TabsDemo() {
             </h1>
             <Meteors number={30} />
           </div>
-
         </BackgroundGradient>
       ),
     },
@@ -46,6 +46,8 @@ export function TabsDemo() {
         <BackgroundGradient>
           <div className="w-full overflow-hidden relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
             <p>Projects</p>
+
+            <AnimatedPinDemo />
           </div>
         </BackgroundGradient>
       ),
