@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/src/utils";
 import { MagicButton } from "./moving-border";
 import { Buttons } from "../Buttons";
+import { BackgroundGradient } from "./border-gradient";
 
 type Tab = {
   title: string;
@@ -102,7 +103,7 @@ export const FadeInDiv = ({
     return tab.value === tabs[0].value;
   };
   return (
-    <div className="relative w-[1000px] h-full  ml-[20%] -mt-44 mb-10">
+    <div className="relative w-[1000px] h-full  ml-[23%] -mt-44 mb-10">
       {tabs.map((tab, idx) => (
         <motion.div
           key={tab.value}
