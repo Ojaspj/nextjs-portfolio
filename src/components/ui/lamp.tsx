@@ -63,7 +63,7 @@ export function LampDemo() {
                 <FaGithub size={30} />
               </a>
               <a
-                href="https://drive.google.com/file/d/1EDs7c0bvfIltq2FFK1OC6hEbNCvjLHP-/view?usp=sharing"
+                href="https://drive.google.com/file/d/1gtaEuYQQrk_ox62gFwgJeS2s6V163VPU/view?usp=sharing"
                 target="_blank"
                 className="rounded-full p-1 border border-gray-500"
               >

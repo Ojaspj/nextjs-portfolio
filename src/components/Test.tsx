@@ -69,7 +69,7 @@ export function TabsDemo() {
       content: (
         <BackgroundGradient>
           <div className="w-full overflow-hidden relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
-            <p>Contact</p>
+            <p className=" uppercase">Contact</p>
           </div>
         </BackgroundGradient>
       ),
