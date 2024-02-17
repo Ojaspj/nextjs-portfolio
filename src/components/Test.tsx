@@ -6,16 +6,26 @@ import { BackgroundGradient } from "./ui/border-gradient";
 import { Meteors } from "./ui/bg-meteors";
 import { AnimatedPinDemo } from "./PinDemo";
 
-export function TabsDemo() {
+export function TabsDemo({ theme }: { theme?: boolean }) {
+  const Wrapper = theme ? "div" : BackgroundGradient;
+  const props = theme;
   const tabs = [
     {
       title: "About",
       value: "about",
       content: (
-        <BackgroundGradient>
-          <div className="w-full overflow-scroll scrollbar-width:none relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
+        <Wrapper {...(props as Boolean)}>
+          <div
+            className={`w-full overflow-scroll scrollbar-width:none relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold  ${
+              theme
+                ? "bg-amber-50 text-[#333] border-4 border-gray-600"
+                : " bg-gradient-to-br from-slate-700 to-slate-900 text-white"
+            }`}
+          >
             <p className="uppercase">About me</p>
-            <h1 className="text-xl font-normal text-justify tracking-wider my-8">
+            <h1
+              className={`text-xl font-normal text-justify tracking-wider my-8 `}
+            >
               Hey there! I'm{" "}
               <span className="font-bold text-purple-400">Prajwal Joshi</span>,
               a spirited software engineering enthusiast navigating the exciting
@@ -36,7 +46,7 @@ export function TabsDemo() {
             </h1>
             <Meteors number={30} />
           </div>
-        </BackgroundGradient>
+        </Wrapper>
       ),
     },
     {
@@ -69,7 +79,7 @@ export function TabsDemo() {
       content: (
         <BackgroundGradient>
           <div className="w-full overflow-hidden relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
-            <p className=" uppercase">Contact</p>
+            <p className="uppercase">Contact</p>
           </div>
         </BackgroundGradient>
       ),
@@ -78,7 +88,7 @@ export function TabsDemo() {
 
   return (
     <div className="h-[20rem] md:h-[50rem]  [perspective:1000px] relative flex flex-col  mx-auto w-full ">
-      <Tabs tabs={tabs} />
+      <Tabs tabs={tabs} theme={theme} />
     </div>
   );
 }

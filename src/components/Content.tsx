@@ -3,13 +3,13 @@ import { FaArrowDown, FaLinkedin, FaGithub } from "react-icons/fa";
 
 export default function Content() {
   return (
-    <div className="w-full h-screen text-center">
+    <div className="w-full h-screen text-center text-[#333]">
       <div className=" relative max-w-[1240px] w-full h-full mx-auto p-2 flex flex-col justify-center items-center">
         <div>
           <p className="uppercase text-md">Hello World!</p>
           <h1 className=" py-4 text-[70px] font-bold ">
             I am
-            <span className=""> Prajwal Joshi.</span>
+            <span className=" "> Prajwal Joshi.</span>
           </h1>
           <h1 className="py-1 text-xl font-normal">
             Software Engineer | Frontend Developer | React | Flutter{" "}

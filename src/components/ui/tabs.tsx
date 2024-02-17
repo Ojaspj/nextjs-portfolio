@@ -19,12 +19,14 @@ export const Tabs = ({
   activeTabClassName,
   tabClassName,
   contentClassName,
+  theme,
 }: {
   tabs: Tab[];
   containerClassName?: string;
   activeTabClassName?: string;
   tabClassName?: string;
   contentClassName?: string;
+  theme?: boolean;
 }) => {
   const [active, setActive] = useState<Tab>(propTabs[0]);
   const [tabs, setTabs] = useState<Tab[]>(propTabs);
@@ -55,7 +57,13 @@ export const Tabs = ({
             }}
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
-            className={cn("relative border rounded-full ", tabClassName)}
+            className={cn(
+              `relative border border-green-500 rounded-full ${
+                theme ? "border-[#333]" : "border-white"
+              }  
+              } `,
+              tabClassName
+            )}
             style={{
               transformStyle: "preserve-3d",
             }}
@@ -65,13 +73,20 @@ export const Tabs = ({
                 layoutId="clickedbutton"
                 transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
                 className={cn(
-                  "absolute inset-0 bg-gray-600 rounded-full ",
+                  `absolute inset-0 rounded-full ${
+                    theme ? "bg-amber-100" : "bg-gray-600"
+                  } `,
                   activeTabClassName
                 )}
               />
             )}
 
-            <span className="relative block text-black dark:text-white">
+            <span
+              className={`relative block ${
+                theme ? "text-[#333]" : "text-white"
+              } text-center 
+            }`}
+            >
               {tab.title}
             </span>
           </button>

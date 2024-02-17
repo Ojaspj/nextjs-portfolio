@@ -7,11 +7,13 @@ export const BackgroundGradient = ({
   className,
   containerClassName,
   animate = true,
+  theme
 }: {
   children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
   animate?: boolean;
+  theme?: boolean;
 }) => {
   const variants = {
     initial: {

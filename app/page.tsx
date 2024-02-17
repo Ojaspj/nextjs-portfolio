@@ -1,14 +1,9 @@
 "use client";
 import Content from "@/src/components/Content";
-import Details from "@/src/components/Details";
 import { TabsDemo } from "@/src/components/Test";
-import {
-  BackgroundBeams,
-  BackgroundBeamsDemo,
-} from "@/src/components/ui/bg-beams";
+
 import { LampDemo } from "@/src/components/ui/lamp";
 import { useState } from "react";
-import { FaReact, FaPython, FaLaptopCode } from "react-icons/fa";
 import { CiDark, CiLight } from "react-icons/ci";
 
 export default function Home() {
@@ -26,17 +21,17 @@ export default function Home() {
 
       {/* light mode  */}
       {light && (
-        <>
+        <div className="h-auto w-full bg-amber-50">
           <Content />
-          <TabsDemo />
-        </>
+          <TabsDemo theme={light} />
+        </div>
       )}
 
       {/* dark mode  */}
       {!light && (
         <div className="h-auto w-full bg-slate-950 ">
           <LampDemo />
-          <TabsDemo />
+          <TabsDemo theme={light} />
         </div>
       )}
 
