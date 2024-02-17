@@ -53,35 +53,53 @@ export function TabsDemo({ theme }: { theme?: boolean }) {
       title: "Projects",
       value: "projects",
       content: (
-        <BackgroundGradient>
-          <div className="w-full overflow-scroll relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
+        <Wrapper>
+          <div
+            className={`w-full overflow-scroll scrollbar-width:none relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold  ${
+              theme
+                ? "bg-amber-50 text-[#333] border-4 border-gray-600"
+                : " bg-gradient-to-br from-slate-700 to-slate-900 text-white"
+            }`}
+          >
             <p>PROJECTS</p>
 
             <AnimatedPinDemo />
           </div>
-        </BackgroundGradient>
+        </Wrapper>
       ),
     },
     {
       title: "Experience",
       value: "experience",
       content: (
-        <BackgroundGradient>
-          <div className="w-full overflow-hidden relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
+        <Wrapper>
+          <div
+            className={`w-full overflow-scroll scrollbar-width:none relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold  ${
+              theme
+                ? "bg-amber-50 text-[#333] border-4 border-gray-600"
+                : " bg-gradient-to-br from-slate-700 to-slate-900 text-white"
+            }`}
+          >
             <p className="uppercase">Experience</p>
           </div>
-        </BackgroundGradient>
+        </Wrapper>
       ),
     },
     {
       title: "Contact",
       value: "contact",
       content: (
-        <BackgroundGradient>
-          <div className="w-full overflow-hidden relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
+        <Wrapper>
+          <div
+            className={`w-full overflow-scroll scrollbar-width:none relative md:h-[43rem] rounded-2xl p-10 text-xl md:text-4xl font-bold  ${
+              theme
+                ? "bg-amber-50 text-[#333] border-4 border-gray-600"
+                : " bg-gradient-to-br from-slate-700 to-slate-900 text-white"
+            }`}
+          >
             <p className="uppercase">Contact</p>
           </div>
-        </BackgroundGradient>
+        </Wrapper>
       ),
     },
   ];
