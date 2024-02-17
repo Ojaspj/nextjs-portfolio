@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/src/utils";
+import { cn, handleScrollToBottom } from "@/src/utils";
 import { FaArrowDown, FaGithub, FaLinkedin } from "react-icons/fa";
 import { BackgroundBeams } from "./bg-beams";
 import { MagicButton } from "./moving-border";
@@ -39,11 +39,7 @@ export function LampDemo() {
       <div className=" relative z-10 flex items-center justify-center ">
         <div className=" absolute bottom-4  text-white ">
           {/* arrow down */}
-          <div className="mb-6 flex flex-col items-center justify-center">
-            {/* <div className=" animate-bounce flex flex-col items-center">
-              <FaArrowDown size={40} />
-            </div> */}
-
+          <div  onClick={handleScrollToBottom} className="mb-6 flex flex-col items-center justify-center">
             <MagicButton className="text-[16px] font-normal">
               <h1 className=" animate-pulse">Scroll Down</h1>
             </MagicButton>
