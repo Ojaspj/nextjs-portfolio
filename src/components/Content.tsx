@@ -1,7 +1,10 @@
 import React from "react";
 import { FaArrowDown, FaLinkedin, FaGithub } from "react-icons/fa";
+import { handleScrollToBottom } from "../utils";
 
 export default function Content() {
+ 
+
   return (
     <div className="w-full h-screen text-center text-[#333]">
       <div className=" relative max-w-[1240px] w-full h-full mx-auto p-2 flex flex-col justify-center items-center">
@@ -26,7 +29,10 @@ export default function Content() {
               <FaArrowDown size={40} />
             </div>
 
-            <div className="font-normal p-2 border border-gray-800 animate-pulse rounded-xl ">
+            <div
+              onClick={handleScrollToBottom}
+              className="font-normal p-2 border cursor-pointer border-gray-800 animate-pulse rounded-xl "
+            >
               <h1>Scroll Down</h1>
             </div>
           </div>
