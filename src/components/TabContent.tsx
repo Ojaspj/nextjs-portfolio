@@ -1,18 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { Tabs } from "./ui/tabs";
 import { BackgroundGradient } from "./ui/border-gradient";
 import { Meteors } from "./ui/bg-meteors";
 import { AnimatedPinDemo } from "./PinDemo";
-import {
-  FaFacebook,
-  FaDiscord,
-  FaWhatsapp,
-  FaInstagram,
-  FaLinkedin,
-} from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+
 import { ContactCards } from "./ContactCards";
 
 export function TabsDemo({ theme }: { theme?: boolean }) {
@@ -121,13 +113,9 @@ export function TabsDemo({ theme }: { theme?: boolean }) {
               </h1>
             </div>
 
-            <ContactCards/>
+            <ContactCards theme={theme}/>
             
-            {/* <FaDiscord size={24} />
-              <FaWhatsapp size={24} />
-              <FaInstagram size={24} />
-              <FaLinkedin size={24} />
-              <MdEmail size={24} /> */}
+           
           </div>
         </Wrapper>
       ),
