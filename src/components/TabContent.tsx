@@ -5,6 +5,15 @@ import { Tabs } from "./ui/tabs";
 import { BackgroundGradient } from "./ui/border-gradient";
 import { Meteors } from "./ui/bg-meteors";
 import { AnimatedPinDemo } from "./PinDemo";
+import {
+  FaFacebook,
+  FaDiscord,
+  FaWhatsapp,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { ContactCards } from "./ContactCards";
 
 export function TabsDemo({ theme }: { theme?: boolean }) {
   const Wrapper = theme ? "div" : BackgroundGradient;
@@ -97,7 +106,28 @@ export function TabsDemo({ theme }: { theme?: boolean }) {
                 : " bg-gradient-to-br from-slate-700 to-slate-900 text-white"
             }`}
           >
-            <p className="uppercase">Contact</p>
+            <h1 className="uppercase">Contact</h1>
+
+            <div>
+              <h1
+                className={`text-xl font-normal text-justify tracking-wider my-8 `}
+              >
+                Thank you for visiting my portfolio! I'm passionate about
+                crafting exceptional user experiences through frontend
+                development. If you have any inquiries, collaboration
+                opportunities, or just want to connect, feel free to reach out.
+                I'm eager to hear from you and explore how we can work together
+                to bring innovative ideas to life.
+              </h1>
+            </div>
+
+            <ContactCards/>
+            
+            {/* <FaDiscord size={24} />
+              <FaWhatsapp size={24} />
+              <FaInstagram size={24} />
+              <FaLinkedin size={24} />
+              <MdEmail size={24} /> */}
           </div>
         </Wrapper>
       ),

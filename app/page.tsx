@@ -1,6 +1,6 @@
 "use client";
 import Content from "@/src/components/Content";
-import { TabsDemo } from "@/src/components/Test";
+import { TabsDemo } from "@/src/components/TabContent";
 import { MainPage } from "@/src/components/ui/grid-bg";
 
 import { LampDemo } from "@/src/components/ui/lamp";
