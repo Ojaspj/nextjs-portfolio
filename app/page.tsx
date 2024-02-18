@@ -1,6 +1,7 @@
 "use client";
 import Content from "@/src/components/Content";
 import { TabsDemo } from "@/src/components/Test";
+import { MainPage } from "@/src/components/ui/grid-bg";
 
 import { LampDemo } from "@/src/components/ui/lamp";
 import { useState } from "react";
@@ -22,7 +23,7 @@ export default function Home() {
       {/* light mode  */}
       {light && (
         <div className="h-auto w-full bg-amber-50">
-          <Content />
+          <MainPage />
           <TabsDemo theme={light} />
         </div>
       )}
