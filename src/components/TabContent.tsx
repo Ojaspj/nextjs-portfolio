@@ -64,7 +64,7 @@ export function TabsDemo({ theme }: { theme?: boolean }) {
           >
             <p>PROJECTS</p>
 
-            <AnimatedPinDemo />
+            <AnimatedPinDemo theme={theme} />
           </div>
         </Wrapper>
       ),
