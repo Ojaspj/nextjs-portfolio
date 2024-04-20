@@ -18,6 +18,7 @@ const Demo = () => {
   const [project, setProject] = React.useState(false);
   const [about, setAbout] = React.useState(false);
   const [skills, setSkills] = React.useState(false);
+  const [connect, setConnect] = React.useState(true);
 
   return (
     <div className=" flex w-full max-h-screen">
