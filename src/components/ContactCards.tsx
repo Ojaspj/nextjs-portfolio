@@ -43,13 +43,13 @@ export const contactData = [
   {
     title: "Email",
     logo : <MdEmail size={24} />,
-    description: "joshiprajwal00@gmail.com",
+    description: "joshiprajwal00@",
     link: "mailto:joshiprajwal00@gmail.com",
   },
   {
     title: "WhatsApp",
     logo : <FaWhatsapp size={24} />,
-    description: "+977-9843881336",
+    description: "9843881336",
     link: "https://wa.me/9843881336",
   },
 ];
