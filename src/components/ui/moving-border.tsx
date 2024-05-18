@@ -8,9 +8,9 @@ import {
   useTransform,
 } from "framer-motion";
 import { useRef } from "react";
-import { cn } from "@/src/utils";
+import { cn } from "@/utils/cn";
 
-export function MagicButton({
+export function Button({
   borderRadius = "1.75rem",
   children,
   as: Component = "button",
@@ -32,7 +32,7 @@ export function MagicButton({
   return (
     <Component
       className={cn(
-        "bg-transparent relative text-xl  h-12 w-40 p-[1px] overflow-hidden ",
+        "bg-transparent relative text-xl  h-16 w-40 p-[1px] overflow-hidden ",
         containerClassName
       )}
       style={{
