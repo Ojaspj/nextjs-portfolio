@@ -5,65 +5,37 @@ import Image from "next/image";
 
 const content = [
   {
-    title: "Software Engineer, Newgen",
-    description1:
-      "Led the development of 14+ Claim Attainment Forms (in Java and JS) for CIG using executeServerEvent",
-    description2:
-      "Implemented Validation and mapped data with Java 17.0 and Event Handling using cutom js in Eclipse",
-    description3:
-      "Handled upto 250+ process docs in Newgen Omniapp with User Rights Management and Process Handling",
-    techstack: "Java, JavaScript, OOPS, CSS, Eclipse IDE",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Software Engineer Intern, Newgen
-        <br /> Jan,24 - Present
-      </div>
-    ),
-  },
-  {
-    title: "Fullstack Dev, Infiti Tech",
+    title: "Associate Frontend Engineer",
     description1:
       "Developed a Robust UI, using React.js and Redux-State Management for 15+ Web-Pages",
     description2:
       "Designed RESTful API in Backend Models.Increased database efficiency with MongoDB and Nodejs by 14 percent",
     description3:
       "Created Node.js routing models for MongoDB and integrated axios, Nodemailer for 7+ custom mailings",
-    techstack: "MERN FullStack, React.js, Redux Express.js, Node.js, MongoDB",
-    content: (
-      <div className="h-full w-full  flex items-center justify-center text-white">
-        Fullstack Dev Intern, Infiti Tech
-        <br /> March,23 - August,23
-      </div>
-    ),
-  },
-  {
-    title: "Frontend Dev, Spotline",
-    description1:
-      "Developed a UI Interface Design in 3 weeks, with sub-page routing and Frontend Animation.",
-    description2:
-      "Integrated Lazy Loading and Shimmer UI which helped improve Website Performance by 148ms",
-    description3:
-      "Gained hands-on experience in real-world software development and created 10+ sub react based Web Pages.",
-    techstack: " React.js, Axios, Redux Tailwind, github",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-        Frontend Dev Intern, Spotline
-        <br /> August,22 - February,22
-      </div>
-    ),
-  },
-  {
-    title: "UI/UX Designer, Fiverr",
-    description1:
-      "Curated a Low Fidelity User Interface, under the guidance of SAAS-based clients and worked in Figma and Sketchbook",
-    description2: "Fine-tuned the UI design and Routing for upto 140+ screens",
-    description3:
-      "Worked with 75+ clients globally ranging from Startup to Full-Fledges Companies while maintaining 4.9 rating",
-    techstack: "Figma, AdobeXD",
+    techstack: "React.js, Next.js Redux Express.js, Node.js",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        UI/UX Designer, Fiverr
-        <br /> Oct,21 - April,22
+        Associate Frontend Engineer, Suvaye
+        <br /> Sept 2023 - Dec 2023
+      </div>
+    ),
+  },
+  {
+    title: "Software Engineer, Investiaa",
+    description1:
+      "ReactJS Frontend Development: Developed and maintained dynamic user interfaces using ReactJS.",
+
+    description2:
+      "Flutter Mobile Apps: Built and deployed cross-platform mobile applications with Flutter.",
+
+    description3:
+      "GraphQL Implementation: Designed and executed efficient data queries and mutations using GraphQL.",
+    techstack:
+      "Specialized in ReactJS for frontend development (JavaScript, HTML, CSS), Flutter for cross-platform mobile apps (Dart, Firebase), API integration (RESTful services, Axios, Postman), and GraphQL implementation (Apollo Client, Node.js).",
+    content: (
+      <div className="h-full w-full  flex items-center justify-center text-white">
+        Software Engineer, Investiaa
+        <br /> Nov 2023 - Present
       </div>
     ),
   },
