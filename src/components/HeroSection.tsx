@@ -40,14 +40,14 @@ function HeroSection() {
               Software Engineer | Frontend Developer with a passion for building beautiful and functional user interfaces.
             </p>
             <div className="mt-4">
-              <Link href="https://drive.google.com/file/d/1wNJ1J0mZ60GplJ7_qzP0oCkbC4fnz9RV/view">
+              {/* <Link href="https://drive.google.com/file/d/1wNJ1J0mZ60GplJ7_qzP0oCkbC4fnz9RV/view"> */}
                 <Button
                   borderRadius="1.75rem"
                   className="bg-white dark:bg-black text-black dark:text-white border-neutral-200 dark:border-slate-800"
                 >
                   Chekout Resume
                 </Button>
-              </Link>
+              {/* </Link> */}
             </div>
           </div>
         </div>
