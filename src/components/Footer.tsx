@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className="bg-black text-gray-400 py-12">
       <div className="max-w-6xl mx-auto flex flex-wrap justify-between gap-8 px-4 sm:px-6 lg:px-8">
-        <div className="w-[50%]">
+        <div className="w-full p-6 md:p-0 md:w-[50%]">
           <p className="mb-6 text-xl  font-semibold text-white">
             Prajwal Joshi
           </p>

@@ -7,7 +7,7 @@ import { Button } from "./ui/moving-border";
 
 function HeroSection() {
   return (
-    <div className="h-auto md:h-[40rem]  w-full rounded-md flex flex-col items-center justify-center relative overflow-hidden mx-auto py-10 md:py-0">
+    <div className="h-auto md:h-[40rem] w-full rounded-md flex flex-col items-center justify-center relative overflow-hidden mx-auto py-10 md:py-0">
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="white"
@@ -33,7 +33,7 @@ function HeroSection() {
           {/* Gradients */}
 
           <div className="mt-6 -ml-8 z-10">
-            <p className="mt-4 font-normal text-base md:text-lg text-neutral-300 max-w-lg mx-auto">
+            <p className="mt-4 px-12 md:px-0 font-normal text-base md:text-lg text-neutral-300 max-w-lg mx-auto">
               Software Engineer | Frontend Developer with a passion for building
               beautiful and functional user interfaces.
             </p>

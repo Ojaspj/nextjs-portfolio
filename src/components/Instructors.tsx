@@ -100,7 +100,7 @@ function Instructors() {
           Here are few amazing technologies I have worked with and deep-dived
           into
         </p>
-        <div className="flex flex-row items-center justify-center mb-10 w-full">
+        <div className="flex flex-wrap px-4 md:px-0 items-center justify-center mb-10 w-full">
           <AnimatedTooltip items={instructors} />
         </div>
       </WavyBackground>
