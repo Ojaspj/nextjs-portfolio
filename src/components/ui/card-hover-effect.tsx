@@ -25,9 +25,7 @@ export const HoverEffect = ({
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const placeholders = [
-    "Enter your email and message",
-    "eg: Hi, I am John. From: john@gmail.com",
-    "Thank you for contacting me.",
+    "Type something and click send..."
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +37,7 @@ export const HoverEffect = ({
   };
 
   return (
-    <div className="mt-56 mx-56">
+    <div className="mt-56 mx-6 md:mx-56">
       <div className="text-center mb-6">
         <p className="  font-bold text-3xl">Contact Me</p>
         <p className=" text-zinc-400">

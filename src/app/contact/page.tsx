@@ -5,11 +5,8 @@ import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 
 function page() {
-  
   return (
     <>
-   
-
       <HoverEffect items={contact} />
       <BackgroundBeams />
     </>
