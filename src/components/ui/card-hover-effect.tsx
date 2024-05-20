@@ -10,6 +10,7 @@ import {
   FaMailchimp,
   FaTwitter,
 } from "react-icons/fa";
+import { PlaceholdersAndVanishInput } from "./placeholders-and-vanish-input";
 
 export const HoverEffect = ({
   items,
@@ -23,6 +24,19 @@ export const HoverEffect = ({
   className?: string;
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const placeholders = [
+    "Enter your email and message",
+    "eg: Hi, I am John. From: john@gmail.com",
+    "Thank you for contacting me.",
+  ];
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+  };
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
 
   return (
     <div className="mt-56 mx-56">
@@ -31,6 +45,14 @@ export const HoverEffect = ({
         <p className=" text-zinc-400">
           You can contact me on the following platforms.
         </p>
+        <div className="my-3">
+
+        <PlaceholdersAndVanishInput
+          placeholders={placeholders}
+          onChange={handleChange}
+          onSubmit={onSubmit}
+          />
+          </div>
       </div>
 
       <div
@@ -43,7 +65,6 @@ export const HoverEffect = ({
           <Link
             href={item?.link}
             key={item?.link}
-            
             className="relative group  block p-2 h-full w-full"
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
