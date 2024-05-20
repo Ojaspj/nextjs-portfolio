@@ -12,13 +12,13 @@ dependencies:
     specifier: ^0.4.2
     version: 0.4.2(tailwindcss@3.4.1)
   '@tsparticles/engine':
-    specifier: ^3.3.0
+    specifier: ^3.4.0
     version: 3.4.0
   '@tsparticles/react':
     specifier: ^3.0.0
     version: 3.0.0(@tsparticles/engine@3.4.0)(react-dom@18.2.0)(react@18.2.0)
   '@tsparticles/slim':
-    specifier: ^3.3.0
+    specifier: ^3.4.0
     version: 3.4.0
   clsx:
     specifier: ^2.1.0

@@ -9,22 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tabler/icons-react": "^2.47.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tsparticles/engine": "^3.4.0",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.4.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.3",
-    "@tabler/icons-react": "^2.47.0",
-    "@tsparticles/engine": "^3.3.0",
-    "@tsparticles/react": "^3.0.0",
-    "@tsparticles/slim": "^3.3.0",
     "mini-svg-data-uri": "^1.4.4",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
     "react-slick": "^0.30.1",
-    "tailwind-merge": "^2.2.1",
-    "simplex-noise": "^4.0.1"
-
+    "simplex-noise": "^4.0.1",
+    "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",
