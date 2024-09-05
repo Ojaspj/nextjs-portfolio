@@ -36,7 +36,7 @@ const contact = [
     title: "X",
     description: "mr_prajwaljoshi",
 
-    link: "https://meta.com",
+    link: "https://twitter.com/mr_prajwaljoshi",
   },
   {
     title: "Mail",
