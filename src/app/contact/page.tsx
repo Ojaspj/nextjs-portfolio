@@ -3,10 +3,12 @@ import { FaFacebook } from "react-icons/fa";
 import { BackgroundBeams } from "../../components/ui/background-beams";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
+import Navbar from "@/components/Navbar";
 
 export default function page() {
   return (
     <>
+    <Navbar />
       <HoverEffect items={contact} />
       <BackgroundBeams />
     </>

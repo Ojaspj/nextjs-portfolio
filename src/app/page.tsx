@@ -2,8 +2,6 @@
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import Instructors from "@/components/Instructors";
-import MusicSchoolTestimonialCard from "@/components/TestimonialCard";
-import UpcomingWebinars from "@/components/UpcomingWebinars";
 import HomeProjects from "@/components/HomeProjects";
 import WorkEx from "@/components/WorkEx";
 import { FloatingDockDemo } from "@/components/FloatingDock";
