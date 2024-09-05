@@ -4,7 +4,7 @@ import { BackgroundBeams } from "../../components/ui/background-beams";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 
-function page() {
+export default function page() {
   return (
     <>
       <HoverEffect items={contact} />
@@ -13,7 +13,6 @@ function page() {
   );
 }
 
-export default page;
 
 const contact = [
   {

@@ -25,7 +25,7 @@ export const HoverEffect = ({
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const placeholders = [
-    "Type something and click send..."
+    "Type something and enter ..."
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
