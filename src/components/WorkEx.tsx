@@ -26,16 +26,54 @@ const content = [
       "ReactJS Frontend Development: Developed and maintained dynamic user interfaces using ReactJS.",
 
     description2:
-      "Flutter Mobile Apps: Built and deployed cross-platform mobile applications with Flutter.",
+      "React Native Mobile Apps: Built and deployed cross-platform mobile applications with React Native.",
 
     description3:
       "GraphQL Implementation: Designed and executed efficient data queries and mutations using GraphQL.",
     techstack:
-      "Specialized in ReactJS for frontend development (JavaScript, HTML, CSS), Flutter for cross-platform mobile apps (Dart, Firebase), API integration (RESTful services, Axios, Postman), and GraphQL implementation (Apollo Client, Node.js).",
+      "Specialized in ReactJS for frontend development (JavaScript, HTML, CSS), API integration (RESTful services, Axios, Postman), and GraphQL implementation (Apollo Client, Node.js).",
     content: (
       <div className="h-full w-full  flex items-center justify-center text-white">
         Software Engineer, Investiaa
-        <br /> Nov 2023 - Present
+        <br /> Sep 2023 - Aug 2024
+      </div>
+    ),
+  },
+  {
+    title: "Senior Frontend Engineer, Aava Tech Nepal",
+    description1:
+      "ReactJS Frontend Development: Developed and maintained dynamic user interfaces using ReactJS.",
+
+    description2:
+      "React Native Mobile Apps: Built and deployed cross-platform mobile applications with React Native.",
+
+    description3:
+      "GraphQL Implementation: Designed and executed efficient data queries and mutations using GraphQL.",
+    techstack:
+      "Specialized in ReactJS for frontend development (JavaScript, HTML, CSS), API integration (RESTful services, Axios, Postman), and GraphQL implementation (Apollo Client, Node.js).",
+    content: (
+      <div className="h-full w-full  flex items-center justify-center text-white">
+        Senior Frontend Engineer, <br /> Aava Tech Nepal
+        <br /> Oct 2023 - Sep 2024
+      </div>
+    ),
+  },
+  {
+    title: "Mobile Application Developer, Aava Tech Nepal",
+    description1:
+      "Frontend Development: Developed and maintained dynamic user interfaces using React Native Components.",
+
+    description2:
+      "React Native Mobile Apps: Built and deployed cross-platform mobile applications with React Native.",
+
+    description3:
+      "GraphQL Implementation: Designed and executed efficient data queries and mutations using GraphQL.",
+    techstack:
+      "Specialized in  React Native for cross-platform mobile apps (Typescript, Expo), API integration (RESTful services, Axios, Postman), and GraphQL implementation (Apollo Client, Node.js).",
+    content: (
+      <div className="h-full w-full  flex items-center justify-center text-white">
+        Mobile Application Developer, <br /> Aava Tech Nepal
+        <br /> Jan 2024 - Aug 2024
       </div>
     ),
   },
