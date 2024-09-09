@@ -19,6 +19,16 @@
       "isMobileApp": true,
       "livelink": "https://software-company-web-template.vercel.app/",
       "tags": ["React Native", "Stylesheet", "Mobile"]
+    },
+    {
+      "id": 3,
+      "title": "Recipe App with React Native",
+      "description": " A recipe app built using React Native and Expo.",
+      "github": "https://github.com/Ojaspj/recipe-app-react-native",
+      "image": "/projects/recipe-app.png",
+      "isMobileApp": true,
+      "livelink": "https://software-company-web-template.vercel.app/",
+      "tags": ["React Native", "Stylesheet", "Mobile"]
     }
   ]
 }

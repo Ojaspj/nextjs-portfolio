@@ -38,18 +38,17 @@ function HeroSection() {
               beautiful and functional user interfaces.
             </p>
             <div className="mt-4">
-              {/* <Link href="https://drive.google.com/file/d/1wNJ1J0mZ60GplJ7_qzP0oCkbC4fnz9RV/view"> */}
-              <Button
-                borderRadius="1.75rem"
-                className="bg-white dark:bg-black text-black dark:text-white border-neutral-200 dark:border-slate-800"
-              >
-                Chekout Resume
-              </Button>
-              {/* </Link> */}
+              <Link href="https://drive.google.com/file/d/1QKBtX9r2_f1srqXiy8CfRvtowRS8G5bQ/view?usp=sharing">
+                <Button
+                  borderRadius="1.75rem"
+                  className="bg-white dark:bg-black text-black dark:text-white border-neutral-200 dark:border-slate-800"
+                >
+                  Chekout Resume
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );
