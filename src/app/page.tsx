@@ -11,7 +11,7 @@ export default function Home() {
     <main className="relative min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02]">
     <HeroSection />
     <WorkEx />
-    <HomeProjects />
+    {/* <HomeProjects /> */}
     <Instructors />
     <div className="hidden md:block sticky -bottom-52 ">
       <FloatingDockDemo />
