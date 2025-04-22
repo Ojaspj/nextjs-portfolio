@@ -12,9 +12,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "John Doe | Frontend & Full-Stack Developer",
+  title: "Prajwal Joshi | Frontend & Full-Stack Developer",
   description:
-    "Personal portfolio of John Doe, a frontend and full-stack developer specializing in modern web technologies.",
+    "Personal portfolio of Prajwal Joshi, a frontend and full-stack developer specializing in modern web technologies.",
   generator: "v0.dev",
 };
 

@@ -17,6 +17,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { projects } from "@/lib/projects";
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+import { techStack } from "@/lib/tech-stack";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -69,21 +71,20 @@ export default function Home() {
               backend logic.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button size="lg" className="rounded-md text-sm md:text-base">
-                    View Resume
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-4xl w-[90vw] h-[90vh] p-0">
-                  <iframe
-                    src="/placeholder.svg?height=1000&width=800"
-                    className="w-full h-full rounded-md"
-                    title="Resume"
-                  />
-                </DialogContent>
-              </Dialog>
+              <Button
+                size="lg"
+                className="rounded-md text-sm md:text-base"
+                asChild
+              >
+                <a
+                  href="https://drive.google.com/file/d/1e-IiP4F4rA4MRKo3R5hS4XYVOcPJCk1X/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Resume
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
 
               <Button
                 size="lg"
@@ -118,19 +119,29 @@ export default function Home() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
                 About Me
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-4 text-justify">
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
-                  I'm a passionate developer with over 5 years of experience
-                  building web applications. I specialize in creating
-                  responsive, accessible, and performant user interfaces using
-                  modern JavaScript frameworks.
+                  Hi, I'm Prajwal — a frontend developer with a strong eye for
+                  clean design and a growing passion for building full-stack
+                  applications. I specialize in crafting responsive,
+                  user-friendly interfaces using React, Next.js, and Tailwind
+                  CSS. Over time, I've also explored backend technologies and
+                  now enjoy building complete SaaS tools from start to finish.
                 </p>
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
-                  My approach combines technical expertise with a keen eye for
-                  design, ensuring that the applications I build are not only
-                  functional but also provide an exceptional user experience.
-                  I'm constantly learning and exploring new technologies to stay
-                  at the forefront of web development.
+                  My work focuses on creating smooth, modern experiences that
+                  not only look good but also solve real problems. I believe in
+                  writing clean, scalable code and designing intuitive
+                  interfaces that feel effortless to use. Whether I'm developing
+                  a single-page app or managing the logic behind a SaaS product,
+                  I strive to keep things simple, efficient, and impactful.
+                </p>
+                <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
+                  Outside of coding, I enjoy exploring new tech stacks, sharing
+                  projects online, and continuously improving my skill set. I'm
+                  currently building a collection of apps under the PrajwalApps
+                  brand, where I experiment with tools, UI patterns, and product
+                  ideas — turning concepts into polished, usable products.
                 </p>
               </div>
               <div className="flex gap-4 pt-2">
@@ -149,7 +160,7 @@ export default function Home() {
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20">
                 <Image
                   src="/placeholder.svg?height=400&width=400"
-                  alt="John Doe"
+                  alt="Prajwal Joshi"
                   fill
                   className="object-cover"
                 />
@@ -178,8 +189,9 @@ export default function Home() {
                 scalable, and maintainable applications.
               </p>
             </motion.div>
-            <motion.div variants={item}>
-            </motion.div>
+            <div className="flex flex-row items-center justify-center mb-10 w-full">
+              <AnimatedTooltip items={techStack} />
+            </div>
           </motion.div>
         </div>
       </section>
@@ -210,7 +222,9 @@ export default function Home() {
               {projects.slice(0, 3).map((project, index) => (
                 <Link
                   key={index}
-                  href={`/apps/${project.slug}`}
+                  href={`
+                    https://www.apps.joshiprajwal.com.np/${project.slug}
+                    `}
                   className="block h-full"
                 >
                   <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group border-muted/60">
@@ -248,7 +262,7 @@ export default function Home() {
             </motion.div>
             <motion.div variants={item} className="text-center pt-4">
               <Button size="lg" className="text-sm md:text-base" asChild>
-                <Link href="/apps">
+                <Link href="https://www.apps.joshiprajwal.com.np">
                   View All Projects
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -286,7 +300,7 @@ export default function Home() {
               className="flex justify-center gap-4 pt-2"
             >
               <Button size="lg" className="text-sm md:text-base" asChild>
-                <a href="mailto:contact@johndoe.com">
+                <a href="mailto:joshiprajwal00@gmail.com">
                   <Mail className="mr-2 h-5 w-5" />
                   Email Me
                 </a>
@@ -298,7 +312,7 @@ export default function Home() {
                 asChild
               >
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -317,12 +331,12 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <p className="text-xs sm:text-sm text-muted-foreground">
-                © {new Date().getFullYear()} John Doe. All rights reserved.
+                © {new Date().getFullYear()} Prajwal Joshi. All rights reserved.
               </p>
             </div>
             <div className="flex space-x-4">
               <a
-                href="https://github.com"
+                href="https://github.com/ojaspj"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -331,7 +345,7 @@ export default function Home() {
                 <span className="sr-only">GitHub</span>
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -340,7 +354,7 @@ export default function Home() {
                 <span className="sr-only">LinkedIn</span>
               </a>
               <a
-                href="mailto:contact@johndoe.com"
+                href="mailto:joshiprajwal00@gmail.com"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="h-5 w-5" />
