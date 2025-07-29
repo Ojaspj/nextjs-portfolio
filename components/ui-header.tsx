@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
@@ -14,6 +13,8 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -23,10 +24,44 @@ export default function Header() {
       } else {
         setIsScrolled(false);
       }
+
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
+      // Debounce the scroll handler
+      timeoutRef.current = setTimeout(() => {
+        const sections = document.querySelectorAll<HTMLElement>("section[id]");
+        let currentSection = "";
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const scrollPosition = window.scrollY + 100; // Adding some offset
+
+          if (
+            scrollPosition >= sectionTop &&
+            scrollPosition < sectionTop + sectionHeight
+          ) {
+            currentSection = section.id;
+          }
+        });
+
+        setActiveSection(currentSection || "home");
+      }, 100);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Initial check
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, []);
 
   // Prevent body scroll when menu is open
@@ -49,10 +84,14 @@ export default function Header() {
   if (!mounted) return null;
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/#about" },
-    { name: "Contact", path: "/#contact" },
+    { name: "Home", path: "/", section: "home" },
+    { name: "About", path: "#about", section: "about" },
+    { name: "Projects", path: "#projects", section: "projects" },
+    { name: "Contact", path: "#contact", section: "contact" },
   ];
+
+  // Check if we're on the home page (where sections exist)
+  const isHomePage = pathname === "/";
 
   return (
     <header
@@ -76,8 +115,8 @@ export default function Header() {
                 href={item.path}
                 className={cn(
                   "text-xs sm:text-sm font-medium transition-colors hover:text-primary relative group leading-relaxed",
-                  pathname === item.path ||
-                    (item.path !== "/" && pathname.startsWith(item.path))
+                  (isHomePage && activeSection === item.section) ||
+                    (!isHomePage && pathname === item.path)
                     ? "text-primary"
                     : "text-muted-foreground"
                 )}
@@ -86,8 +125,8 @@ export default function Header() {
                 <span
                   className={cn(
                     "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300",
-                    pathname === item.path ||
-                      (item.path !== "/" && pathname.startsWith(item.path))
+                    (isHomePage && activeSection === item.section) ||
+                      (!isHomePage && pathname === item.path)
                       ? "w-full"
                       : "w-0 group-hover:w-full"
                   )}
@@ -96,18 +135,17 @@ export default function Header() {
             ))}
           </nav>
         </div>
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full md:hidden"
-            onClick={() => setIsMenuOpen(true)}
-          >
-            <Menu className="h-5 w-5" />
-            <span className="sr-only">Toggle menu</span>
-          </Button>
-        </div>
+        
+        {/* Mobile menu button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden rounded-full"
+          onClick={() => setIsMenuOpen(true)}
+        >
+          <Menu className="h-5 w-5" />
+          <span className="sr-only">Menu</span>
+        </Button>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -157,8 +195,8 @@ export default function Header() {
                       onClick={() => setIsMenuOpen(false)}
                       className={cn(
                         "flex items-center py-3 px-4 rounded-lg text-base md:text-lg font-medium transition-colors w-full leading-relaxed",
-                        pathname === item.path ||
-                          (item.path !== "/" && pathname.startsWith(item.path))
+                        (isHomePage && activeSection === item.section) ||
+                          (!isHomePage && pathname === item.path)
                           ? "bg-primary/10 text-primary"
                           : "text-foreground hover:bg-muted"
                       )}

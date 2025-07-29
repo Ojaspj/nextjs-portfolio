@@ -13,7 +13,6 @@ import {
   Mail,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { projects } from "@/lib/projects";
@@ -222,8 +221,7 @@ export default function Home() {
               {projects.slice(0, 3).map((project, index) => (
                 <Link
                   key={index}
-                  href={`
-                    https://www.apps.joshiprajwal.com.np/${project.slug}
+                  href={`/projects/${project.slug}
                     `}
                   className="block h-full"
                 >
@@ -262,7 +260,7 @@ export default function Home() {
             </motion.div>
             <motion.div variants={item} className="text-center pt-4">
               <Button size="lg" className="text-sm md:text-base" asChild>
-                <Link href="https://www.apps.joshiprajwal.com.np">
+                <Link href="/projects">
                   View All Projects
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -274,7 +272,7 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="py-24 md:py-32 bg-muted/30 px-4 md:px-6">
-        <div className="container px-4 md:px-6 mx-auto">
+        <div className="h-[50vh] px-4 md:px-6 mx-auto">
           <motion.div
             variants={container}
             initial="hidden"

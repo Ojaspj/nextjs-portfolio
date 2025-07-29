@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import ProjectGrid from "@/components/project-grid"
-import { projects } from "@/lib/projects"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import ProjectGrid from "@/components/project-grid";
+import { projects } from "@/lib/projects";
 
 export default function AppsPage() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   // Prevent hydration mismatch
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
   return (
     <div className="min-h-screen">
@@ -26,11 +26,11 @@ export default function AppsPage() {
             className="max-w-3xl"
           >
             <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-              My Applications
+              Projects
             </h1>
             <p className="text-xl text-muted-foreground mb-6">
-              A curated collection of innovative applications and projects I've developed, showcasing my expertise in
-              modern web technologies.
+              A curated collection of innovative projects I've developed,
+              showcasing my expertise in modern web technologies.
             </p>
           </motion.div>
         </div>
@@ -40,5 +40,5 @@ export default function AppsPage() {
         <ProjectGrid projects={projects} />
       </section>
     </div>
-  )
+  );
 }

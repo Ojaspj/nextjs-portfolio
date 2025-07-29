@@ -22,7 +22,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileHover={{ y: -5 }}
       className="h-full"
     >
-      <Link href={`/apps/${project.slug}`} className="block h-full">
+      <Link href={`/projects/${project.slug}`} className="block h-full">
         <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-xl group border-muted/60">
           <div className="relative aspect-video overflow-hidden bg-muted/30">
             <Image

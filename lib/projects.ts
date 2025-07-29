@@ -22,7 +22,7 @@ export const projects: Project[] = [
     description:
       "A comprehensive dashboard for managing an e-commerce platform with real-time analytics and inventory management.",
     image: "/placeholder.svg?height=400&width=600",
-    banner: "/placeholder.svg?height=800&width=1600",
+    banner: "https://res.cloudinary.com/djmtejqkc/image/upload/v1753777596/software-web-1_fls60k.png",
     tags: ["Dashboard", "E-Commerce", "Analytics"],
     features: [
       "Real-time sales analytics",
@@ -38,6 +38,7 @@ export const projects: Project[] = [
       "This project was built with a focus on performance and user experience. I started with wireframing the UI, then implemented the core features using Next.js and React. The backend uses Prisma with PostgreSQL for data storage.",
     screenshots: [
       "/placeholder.svg?height=800&width=1200",
+      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753777596/software-web-1_fls60k.png",
       "/placeholder.svg?height=800&width=1200",
       "/placeholder.svg?height=800&width=1200",
       "/placeholder.svg?height=800&width=1200",
