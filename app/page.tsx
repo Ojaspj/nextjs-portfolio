@@ -4,20 +4,14 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Download,
-  ExternalLink,
-  Github,
-  Linkedin,
-  Mail,
-} from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { projects } from "@/lib/projects";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { techStack } from "@/lib/tech-stack";
+import Lottie from "lottie-react";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -49,12 +43,12 @@ export default function Home() {
     <div className="min-h-screen ">
       {/* Hero Section */}
       <section className="relative py-24 px-4 md:px-6 md:py-32 bg-gradient-to-b from-background to-muted/30">
-        <div className="container px-4 md:px-6 mx-auto">
+        <div className=" container px-4 md:px-6 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl mx-auto md:mx-0 space-y-6"
+            className="max-w-full mx-auto  md:mx-0 space-y-6 flex flex-col items-center justify-center text-center "
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 leading-tight">
               Prajwal Joshi
@@ -75,25 +69,20 @@ export default function Home() {
                 className="rounded-md text-sm md:text-base"
                 asChild
               >
-                <a
-                  href="https://drive.google.com/file/d/1e-IiP4F4rA4MRKo3R5hS4XYVOcPJCk1X/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Resume
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                <a href="#projects" rel="noopener noreferrer">
+                  View Projects
                 </a>
               </Button>
 
               <Button
                 size="lg"
-                variant="ghost"
-                className="rounded-md text-sm md:text-base"
+                variant="outline"
+                className="rounded-md  text-sm md:text-base"
                 asChild
               >
                 <a href="#contact">
                   Contact Me
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <Phone className="ml-2 h-4 w-4" />
                 </a>
               </Button>
             </div>
@@ -143,27 +132,15 @@ export default function Home() {
                   ideas — turning concepts into polished, usable products.
                 </p>
               </div>
-              <div className="flex gap-4 pt-2">
-                <Button size="lg" className="text-sm md:text-base" asChild>
-                  <Link href="/apps">
-                    View My Work
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
             </motion.div>
             <motion.div
               variants={item}
-              className="order-1 md:order-2 flex justify-center md:justify-end"
+              className="order-1 md:order-2  flex justify-center"
             >
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20">
-                <Image
-                  src="/placeholder.svg?height=400&width=400"
-                  alt="Prajwal Joshi"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <Lottie
+                animationData={require("@/public/Codingboy.json")}
+                loop={true}
+              />
             </motion.div>
           </motion.div>
         </div>
@@ -272,7 +249,7 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="py-24 md:py-32 bg-muted/30 px-4 md:px-6">
-        <div className="h-[50vh] px-4 md:px-6 mx-auto">
+        <div className="xl:h-[50vh] px-4 md:px-6 mx-auto">
           <motion.div
             variants={container}
             initial="hidden"
