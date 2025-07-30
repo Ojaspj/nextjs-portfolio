@@ -106,7 +106,7 @@ export default function Header() {
             href="/"
             className="font-bold text-base sm:text-lg md:text-xl leading-none"
           >
-            <span className="text-primary">Prajwal</span>Joshi
+            <span className="text-primary ">Prajwal</span>Joshi
           </Link>
           <nav className="hidden md:flex gap-6">
             {navItems.map((item) => (
@@ -114,7 +114,7 @@ export default function Header() {
                 key={item.name}
                 href={item.path}
                 className={cn(
-                  "text-xs sm:text-sm font-medium transition-colors hover:text-primary relative group leading-relaxed",
+                  "text-sm sm:text-[16px] font-medium transition-colors hover:text-primary relative group leading-relaxed",
                   (isHomePage && activeSection === item.section) ||
                     (!isHomePage && pathname === item.path)
                     ? "text-primary"
@@ -168,7 +168,7 @@ export default function Header() {
               className="fixed right-0 top-0 z-50 h-full w-[75vw] max-w-sm md:hidden bg-background/95 backdrop-blur-md shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between p-5 border-b">
+              <div className="flex  items-center justify-between p-5 border-b">
                 <p className="font-semibold text-base md:text-lg leading-none">
                   Menu
                 </p>
@@ -182,7 +182,7 @@ export default function Header() {
                   <span className="sr-only">Close</span>
                 </Button>
               </div>
-              <nav className="p-5 space-y-1">
+              <nav className="p-5 space-y-1 bg-white">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.name}

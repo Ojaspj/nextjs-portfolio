@@ -1,32 +1,32 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useParams, notFound } from "next/navigation"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { ArrowLeft, ExternalLink, Github } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { projects } from "@/lib/projects"
-import Link from "next/link"
-import { Separator } from "@/components/ui/separator"
-import ImageGallery from "@/components/image-gallery"
+import { useEffect, useState } from "react";
+import { useParams, notFound } from "next/navigation";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { projects } from "@/lib/projects";
+import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
+import ImageGallery from "@/components/image-gallery";
 
 export default function ProjectPage() {
-  const { slug } = useParams()
-  const [mounted, setMounted] = useState(false)
+  const { slug } = useParams();
+  const [mounted, setMounted] = useState(false);
 
   // Prevent hydration mismatch
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
-  const project = projects.find((p) => p.slug === slug)
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
-    notFound()
+    notFound();
   }
 
   const container = {
@@ -37,34 +37,53 @@ export default function ProjectPage() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
-  }
+  };
 
   return (
     <div className="min-h-screen pb-16">
       {/* Hero section with banner image */}
       <section className="relative w-full h-[40vh] md:h-[50vh] lg:h-[60vh] overflow-hidden">
-        <Image src={project.banner || project.image} alt={project.title} fill className="object-cover" priority />
+        <Image
+          src={project.banner || project.image}
+          alt={project.title}
+          fill
+          className="object-cover"
+          priority
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent"></div>
 
         <div className="absolute bottom-0 left-0 right-0 container mx-auto px-4 py-8">
-          <Link href="/apps">
-            <Button variant="outline" size="sm" className="mb-4 group backdrop-blur-sm bg-background/30">
+          <Link href="/projects">
+            <Button
+              variant="outline"
+              size="sm"
+              className="mb-4 group backdrop-blur-sm bg-background/30"
+            >
               <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-              Back to applications
+              Back to projects
             </Button>
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">{project.title}</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">{project.description}</p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">
+            {project.title}
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-2xl">
+            {project.description}
+          </p>
         </div>
       </section>
 
       <div className="container mx-auto px-4 mt-8">
-        <motion.div variants={container} initial="hidden" animate="show" className="grid md:grid-cols-3 gap-8">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="grid md:grid-cols-3 gap-8"
+        >
           <motion.div variants={item} className="md:col-span-2 space-y-8">
             <div>
               <h2 className="text-2xl font-bold mb-4">Overview</h2>
@@ -90,7 +109,10 @@ export default function ProjectPage() {
             {project.screenshots && project.screenshots.length > 0 && (
               <motion.div variants={item}>
                 <h2 className="text-2xl font-bold mb-4">Screenshots</h2>
-                <ImageGallery images={project.screenshots} alt={project.title} />
+                <ImageGallery
+                  images={project.screenshots}
+                  alt={project.title}
+                />
               </motion.div>
             )}
           </motion.div>
@@ -101,10 +123,16 @@ export default function ProjectPage() {
 
               <div className="space-y-4">
                 <div>
-                  <h4 className="text-sm text-muted-foreground mb-2">Tech Stack</h4>
+                  <h4 className="text-sm text-muted-foreground mb-2">
+                    Tech Stack
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (
-                      <Badge key={tech} variant="outline" className="font-medium">
+                      <Badge
+                        key={tech}
+                        variant="outline"
+                        className="font-medium"
+                      >
                         {tech}
                       </Badge>
                     ))}
@@ -114,10 +142,16 @@ export default function ProjectPage() {
                 <Separator />
 
                 <div>
-                  <h4 className="text-sm text-muted-foreground mb-2">Category</h4>
+                  <h4 className="text-sm text-muted-foreground mb-2">
+                    Category
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="font-medium">
+                      <Badge
+                        key={tag}
+                        variant="secondary"
+                        className="font-medium"
+                      >
                         {tag}
                       </Badge>
                     ))}
@@ -127,17 +161,25 @@ export default function ProjectPage() {
                 <Separator />
 
                 <div className="pt-2">
-                  {project.demoUrl && (
+                  {project.demoUrl !== "null" && (
                     <Button className="w-full mb-3" asChild>
-                      <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <ExternalLink className="mr-2 h-4 w-4" />
                         View Live Demo
                       </a>
                     </Button>
                   )}
-                  {project.githubUrl && (
+                  {project.githubUrl !== "null" && (
                     <Button variant="outline" className="w-full" asChild>
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Github className="mr-2 h-4 w-4" />
                         View Source Code
                       </a>
@@ -150,5 +192,5 @@ export default function ProjectPage() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }
