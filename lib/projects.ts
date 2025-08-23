@@ -206,6 +206,39 @@ export const projects: Project[] = [
 
   {
     id: 6,
+    title: "Personal Loan Tracker",
+    slug: "personal-loan-tracker",
+    description:
+      "A personal loan tracking application that helps users manage their loans effectively.",
+    image: "/placeholder.svg?height=400&width=600",
+    banner: "/placeholder.svg?height=800&width=1600",
+    tags: ["Finance", "Productivity"],
+    features: [
+      "Loan application management",
+      "Payment tracking",
+      "Interest rate calculator",
+      "Document upload and storage",
+      "User-friendly dashboard",
+    ],
+    techStack: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Firebase",
+      "Firestore",
+
+    ],
+    demoUrl: "https://loan-tracker-rho.vercel.app/",
+    githubUrl: "https://github.com/Ojaspj/loan-tracker",
+    screenshots: [
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200",
+      "/placeholder.svg?height=800&width=1200",
+    ],
+  },
+  {
+    id: 7,
     title: "Real Estate Listing Platform",
     slug: "real-estate-platform",
     description:
