@@ -106,7 +106,7 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6 md:gap-10">
           <Link href="/" className="font-bold text-xl">
-            <span className="text-primary">John</span>Doe
+            <span className="text-primary">Prajwal</span>Joshi
           </Link>
           <nav className="hidden md:flex gap-6">
             {navItems.map((item) => (
@@ -129,13 +129,13 @@ export default function Header() {
             ))}
           </nav>
         </div>
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <ThemeToggle />
           <Button variant="ghost" size="icon" className="rounded-full md:hidden" onClick={() => setIsMenuOpen(true)}>
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle menu</span>
           </Button>
-        </div>
+        </div> */}
       </div>
 
       {/* Mobile Menu Overlay */}

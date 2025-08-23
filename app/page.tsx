@@ -53,15 +53,18 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 leading-tight">
               Prajwal Joshi
             </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-foreground/90 leading-tight">
-              Frontend & Full-Stack Developer
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-small text-foreground/90 leading-tight">
+              Front-End Engineer specializing in React.js and Next.js
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              Hi, I'm Prajwal — a frontend-focused developer with a strong
-              interest in building full-stack SaaS applications. I craft clean,
-              modern user interfaces using React, Next.js, and Tailwind CSS, and
-              I enjoy bringing ideas to life by managing everything from UI to
-              backend logic.
+              Frontend Engineer with 3+ years of experience
+              specializing in building high-performance web applications with
+              React, Next.js, and TypeScript, complemented by knowledge of
+              backend development, including REST APIs and GraphQL, using
+              Nodejs. Skilled in creating modern, responsive UIs and integrating
+              them with robust backend systems. Passionate about delivering
+              innovative solutions and collaborating with cross-functional teams
+              to bring ideas to life.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
               <Button
