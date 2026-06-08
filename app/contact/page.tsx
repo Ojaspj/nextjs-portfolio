@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from "lucide-react"
+import { Mail, MapPin, Send, Github, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -78,19 +78,13 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: "Email",
-      value: "contact@johndoe.com",
-      href: "mailto:contact@johndoe.com",
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      value: "joshiprajwal00@gmail.com",
+      href: "mailto:joshiprajwal00@gmail.com",
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "India · Remote",
       href: "#",
     },
   ]
@@ -99,20 +93,14 @@ export default function ContactPage() {
     {
       icon: Github,
       name: "GitHub",
-      href: "https://github.com",
-      color: "hover:text-gray-900 dark:hover:text-gray-100",
+      href: "https://github.com/ojaspj",
+      color: "hover:text-foreground",
     },
     {
       icon: Linkedin,
       name: "LinkedIn",
-      href: "https://linkedin.com",
-      color: "hover:text-blue-600",
-    },
-    {
-      icon: Twitter,
-      name: "Twitter",
-      href: "https://twitter.com",
-      color: "hover:text-blue-400",
+      href: "https://www.linkedin.com/in/prajwal-joshi-3b3734156/",
+      color: "hover:text-foreground",
     },
   ]
 
@@ -122,7 +110,7 @@ export default function ContactPage() {
         <motion.div variants={container} initial="hidden" animate="show" className="max-w-6xl mx-auto">
           {/* Header */}
           <motion.div variants={item} className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground tracking-tight">
               Get In Touch
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

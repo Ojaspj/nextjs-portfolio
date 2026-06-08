@@ -129,13 +129,13 @@ export default function Header() {
             ))}
           </nav>
         </div>
-        {/* <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <ThemeToggle />
           <Button variant="ghost" size="icon" className="rounded-full md:hidden" onClick={() => setIsMenuOpen(true)}>
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle menu</span>
           </Button>
-        </div> */}
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -173,7 +173,7 @@ export default function Header() {
                   <span className="sr-only">Close</span>
                 </Button>
               </div>
-              <nav className="p-4">
+              <nav className="p-4 overflow-y-auto">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.name}

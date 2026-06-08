@@ -4,230 +4,433 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Github, Linkedin, Mail, Phone } from "lucide-react";
+import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { projects } from "@/lib/projects";
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import { techStack } from "@/lib/tech-stack";
-import Lottie from "lottie-react";
+
+const techCategories = [
+  {
+    label: "Frontend",
+    skills: [
+      { name: "React", image: "/react.webp" },
+      { name: "Next.js", image: "https://seeklogo.com/images/N/next-js-logo-8FCFF51DD2-seeklogo.com.png" },
+      { name: "TypeScript", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png" },
+      { name: "JavaScript", image: "/Javascript.webp" },
+      { name: "Tailwind CSS", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png" },
+      { name: "HTML / CSS", image: "/HTML.webp" },
+    ],
+  },
+  {
+    label: "Backend",
+    skills: [
+      { name: "Node.js", image: "/NodeJS.webp" },
+      { name: "GraphQL", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png" },
+      { name: "REST APIs", image: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" },
+    ],
+  },
+  {
+    label: "Database & Tools",
+    skills: [
+      { name: "PostgreSQL", image: "/PostGre.webp" },
+      { name: "Firebase", image: "https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" },
+      { name: "Git", image: "https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" },
+      { name: "Vercel", image: "https://www.vectorlogo.zone/logos/vercel/vercel-icon.svg" },
+      { name: "Figma", image: "https://www.vectorlogo.zone/logos/figma/figma-icon.svg" },
+    ],
+  },
+];
+
+const experience = [
+  {
+    role: "Software Engineer",
+    company: "Investiaa",
+    location: "Remote",
+    period: "2023 – 2024",
+    description:
+      "Contributed to a startup ecosystem platform connecting startups with investors and incubators. Developed frontend features using React and Next.js, and contributed to GraphQL API design and PostgreSQL database integration.",
+    tags: ["React", "Next.js", "GraphQL", "PostgreSQL", "Tailwind CSS"],
+  },
+  {
+    role: "Freelance Frontend Developer",
+    company: "Self-Employed",
+    location: "Remote",
+    period: "2022 – Present",
+    description:
+      "Building SaaS products, web applications, and client websites end-to-end. Delivered 7+ projects under the PrajwalApps brand, ranging from mobile apps to full-stack web platforms.",
+    tags: ["React", "Next.js", "TypeScript", "Firebase", "Tailwind CSS"],
+  },
+  {
+    role: "Frontend Developer Intern",
+    company: "Add Your Company Here",
+    location: "Add Location",
+    period: "2021 – 2022",
+    description:
+      "Built and maintained web interfaces, worked on responsive design, and gained hands-on experience with production-level React development.",
+    tags: ["React", "JavaScript", "CSS", "HTML"],
+  },
+];
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
 
-  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) return null;
 
-  // Animation variants
   const container = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.08 },
     },
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   };
 
   return (
-    <div className="min-h-screen ">
-      {/* Hero Section */}
-      <section className="relative py-24 px-4 md:px-6 md:py-32 bg-gradient-to-b from-background to-muted/30">
-        <div className=" container px-4 md:px-6 mx-auto">
+    <div className="min-h-screen">
+      {/* Hero */}
+      <section className="py-20 md:py-28 px-4 md:px-6 border-b">
+        <div className="container mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-full mx-auto  md:mx-0 space-y-6 flex flex-col items-center justify-center text-center "
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="max-w-3xl mx-auto flex flex-col items-center text-center space-y-6"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 leading-tight">
-              Prajwal Joshi
-            </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-small text-foreground/90 leading-tight">
-              Front-End Engineer specializing in React.js and Next.js
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              Frontend Engineer with 3+ years of experience
-              specializing in building high-performance web applications with
-              React, Next.js, and TypeScript, complemented by knowledge of
-              backend development, including REST APIs and GraphQL, using
-              Nodejs. Skilled in creating modern, responsive UIs and integrating
-              them with robust backend systems. Passionate about delivering
-              innovative solutions and collaborating with cross-functional teams
-              to bring ideas to life.
-            </p>
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Button
-                size="lg"
-                className="rounded-md text-sm md:text-base"
-                asChild
-              >
-                <a href="#projects" rel="noopener noreferrer">
-                  View Projects
-                </a>
-              </Button>
+            <motion.div variants={item} className="flex items-center gap-2">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
+              </span>
+              <span className="text-sm text-muted-foreground font-medium">
+                Available for work
+              </span>
+            </motion.div>
 
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-md  text-sm md:text-base"
-                asChild
-              >
-                <a href="#contact">
-                  Contact Me
-                  <Phone className="ml-2 h-4 w-4" />
+            <motion.h1
+              variants={item}
+              className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-foreground"
+            >
+              Prajwal Joshi
+            </motion.h1>
+
+            <motion.h2
+              variants={item}
+              className="text-xl sm:text-2xl text-muted-foreground font-medium"
+            >
+              Front-End Engineer &mdash; React · Next.js · TypeScript
+            </motion.h2>
+
+            <motion.p
+              variants={item}
+              className="text-base text-muted-foreground leading-relaxed max-w-xl"
+            >
+              3+ years building high-performance web applications. I specialize
+              in clean, responsive interfaces and integrating them with robust
+              backend systems. Currently building products under the{" "}
+              <span className="text-foreground font-medium">PrajwalApps</span>{" "}
+              brand.
+            </motion.p>
+
+            <motion.div variants={item} className="flex flex-wrap justify-center gap-3 pt-1">
+              <Button size="lg" asChild>
+                <a href="#projects">View Projects</a>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <a href="#contact">Contact Me</a>
+              </Button>
+              <Button size="lg" variant="ghost" asChild>
+                <a href="/resume.pdf" download>
+                  <Download className="mr-2 h-4 w-4" />
+                  Resume
                 </a>
               </Button>
-            </div>
+            </motion.div>
+
+            <motion.div variants={item} className="flex items-center justify-center gap-5 pt-1">
+              <a
+                href="https://github.com/ojaspj"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="GitHub"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="mailto:joshiprajwal00@gmail.com"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* About Me Section */}
-      <section id="about" className="py-24 md:py-32 px-4 md:px-6">
-        <div className="container px-4 md:px-6 mx-auto">
+      {/* About */}
+      <section id="about" className="py-20 md:py-28 px-4 md:px-6 border-b">
+        <div className="container mx-auto">
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid md:grid-cols-2 gap-12 items-center"
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid md:grid-cols-5 gap-12 max-w-5xl mx-auto"
           >
-            <motion.div
-              variants={item}
-              className="order-2 md:order-1 space-y-6"
-            >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+            <motion.div variants={item} className="md:col-span-3 space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
                 About Me
               </h2>
-              <div className="space-y-4 text-justify">
-                <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
-                  Hi, I'm Prajwal — a frontend developer with a strong eye for
-                  clean design and a growing passion for building full-stack
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Hi, I&apos;m Prajwal — a frontend developer with a strong eye
+                  for clean design and a growing passion for building full-stack
                   applications. I specialize in crafting responsive,
                   user-friendly interfaces using React, Next.js, and Tailwind
-                  CSS. Over time, I've also explored backend technologies and
-                  now enjoy building complete SaaS tools from start to finish.
+                  CSS.
                 </p>
-                <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
+                <p>
                   My work focuses on creating smooth, modern experiences that
                   not only look good but also solve real problems. I believe in
-                  writing clean, scalable code and designing intuitive
-                  interfaces that feel effortless to use. Whether I'm developing
-                  a single-page app or managing the logic behind a SaaS product,
-                  I strive to keep things simple, efficient, and impactful.
+                  writing clean, scalable code and designing intuitive interfaces
+                  that feel effortless to use.
                 </p>
-                <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
-                  Outside of coding, I enjoy exploring new tech stacks, sharing
-                  projects online, and continuously improving my skill set. I'm
-                  currently building a collection of apps under the PrajwalApps
-                  brand, where I experiment with tools, UI patterns, and product
-                  ideas — turning concepts into polished, usable products.
+                <p>
+                  I&apos;m building a collection of apps under the{" "}
+                  <span className="text-foreground font-medium">
+                    PrajwalApps
+                  </span>{" "}
+                  brand — turning concepts into polished, usable products.
                 </p>
               </div>
             </motion.div>
+
             <motion.div
               variants={item}
-              className="order-1 md:order-2  flex justify-center"
+              className="md:col-span-2 grid grid-cols-2 gap-4 content-start"
             >
-              <Lottie
-                animationData={require("@/public/Codingboy.json")}
-                loop={true}
-              />
+              {[
+                { value: "3+", label: "Years Experience" },
+                { value: "7+", label: "Projects Built" },
+                { value: "10+", label: "Technologies" },
+                { value: "100%", label: "Remote Ready" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="border rounded-lg p-5 text-center space-y-1"
+                >
+                  <p className="text-3xl font-bold text-foreground">
+                    {stat.value}
+                  </p>
+                  <p className="text-xs text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Tech Stack Section */}
-      <section className="py-24 md:py-32 bg-muted/30 px-4 md:px-6">
-        <div className="container px-4 md:px-6 mx-auto">
+      {/* Experience */}
+      <section
+        id="experience"
+        className="py-20 md:py-28 px-4 md:px-6 border-b bg-muted/20"
+      >
+        <div className="container mx-auto">
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-12"
+            viewport={{ once: true, margin: "-80px" }}
+            className="space-y-12 max-w-3xl mx-auto"
           >
-            <motion.div variants={item} className="text-center space-y-4">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
-                My Tech Stack
+            <motion.div variants={item} className="space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                Work Experience
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                These are the technologies I work with to build modern,
-                scalable, and maintainable applications.
+              <p className="text-muted-foreground">
+                My professional journey so far.
               </p>
             </motion.div>
-            <div className="flex flex-row items-center justify-center mb-10 w-full">
-              <AnimatedTooltip items={techStack} />
-            </div>
+
+            <motion.div variants={item} className="relative space-y-0">
+              <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" />
+              {experience.map((exp, index) => (
+                <div key={index} className="relative pl-8 pb-10 last:pb-0">
+                  <div className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-foreground bg-background" />
+                  <div className="space-y-2">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                      <div>
+                        <h3 className="font-semibold text-foreground text-base leading-tight">
+                          {exp.role}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-0.5">
+                          {exp.company} &middot; {exp.location}
+                        </p>
+                      </div>
+                      <span className="text-xs text-muted-foreground font-medium whitespace-nowrap border rounded-full px-3 py-1 self-start">
+                        {exp.period}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {exp.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {exp.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="text-xs font-normal"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Featured Projects Section */}
-      <section id="projects" className="py-24 md:py-32 px-4 md:px-6">
-        <div className="container px-4 md:px-6 mx-auto">
+      {/* Tech Stack */}
+      <section className="py-20 md:py-28 px-4 md:px-6 border-b">
+        <div className="container mx-auto">
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-12"
+            viewport={{ once: true, margin: "-80px" }}
+            className="space-y-10 max-w-4xl mx-auto"
           >
-            <motion.div variants={item} className="space-y-4">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
-                Featured Projects
+            <motion.div variants={item} className="space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                Tech Stack
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                Here are some of my recent projects. Visit my apps showcase to
-                see the complete collection.
+              <p className="text-muted-foreground">
+                Tools and technologies I use to build modern applications.
               </p>
             </motion.div>
+
+            <motion.div variants={item} className="space-y-8">
+              {techCategories.map((cat) => (
+                <div key={cat.label} className="space-y-3">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    {cat.label}
+                  </p>
+                  <div className="flex flex-wrap gap-2.5">
+                    {cat.skills.map((skill) => (
+                      <div
+                        key={skill.name}
+                        className="group flex items-center gap-2.5 rounded-lg border bg-background px-4 py-2.5 text-sm font-medium transition-all duration-200 hover:border-foreground/30 hover:shadow-sm cursor-default select-none"
+                      >
+                        <img
+                          src={skill.image}
+                          alt={skill.name}
+                          className="h-[18px] w-[18px] object-contain shrink-0"
+                        />
+                        <span className="text-foreground/80 group-hover:text-foreground transition-colors">
+                          {skill.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Featured Projects */}
+      <section
+        id="projects"
+        className="py-20 md:py-28 px-4 md:px-6 border-b bg-muted/20"
+      >
+        <div className="container mx-auto">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="space-y-10 max-w-5xl mx-auto"
+          >
             <motion.div
               variants={item}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="flex items-end justify-between"
+            >
+              <div className="space-y-2">
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                  Featured Projects
+                </h2>
+                <p className="text-muted-foreground">
+                  A selection of recent work.
+                </p>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                asChild
+                className="hidden sm:flex"
+              >
+                <Link href="/projects">
+                  View all
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
+
+            <motion.div
+              variants={item}
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {projects.slice(0, 3).map((project, index) => (
                 <Link
                   key={index}
-                  href={`/projects/${project.slug}
-                    `}
-                  className="block h-full"
+                  href={`/projects/${project.slug}`}
+                  className="block h-full group"
                 >
-                  <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group border-muted/60">
-                    <div className="relative aspect-video overflow-hidden bg-muted/30">
+                  <Card className="overflow-hidden h-full border hover:border-foreground/30 transition-all duration-200 hover:-translate-y-0.5">
+                    <div className="relative aspect-video overflow-hidden bg-muted">
                       <Image
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <CardContent className="p-6 space-y-3">
-                      <h3 className="text-lg sm:text-xl font-bold group-hover:text-primary transition-colors duration-200 leading-tight">
+                    <CardContent className="p-5 space-y-3">
+                      <h3 className="font-semibold leading-snug group-hover:text-muted-foreground transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                      <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
                         {project.description}
                       </p>
-                      <div className="flex flex-wrap gap-2 pt-1">
+                      <div className="flex flex-wrap gap-1.5 pt-0.5">
                         {project.tags.slice(0, 3).map((tag) => (
                           <Badge
                             key={tag}
                             variant="secondary"
-                            className="text-xs sm:text-xs font-medium"
+                            className="text-xs font-normal"
                           >
                             {tag}
                           </Badge>
@@ -238,8 +441,9 @@ export default function Home() {
                 </Link>
               ))}
             </motion.div>
-            <motion.div variants={item} className="text-center pt-4">
-              <Button size="lg" className="text-sm md:text-base" asChild>
+
+            <motion.div variants={item} className="sm:hidden">
+              <Button variant="outline" asChild className="w-full">
                 <Link href="/projects">
                   View All Projects
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -250,51 +454,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-24 md:py-32 bg-muted/30 px-4 md:px-6">
-        <div className="xl:h-[50vh] px-4 md:px-6 mx-auto">
+      {/* Contact */}
+      <section id="contact" className="py-20 md:py-28 px-4 md:px-6 border-b">
+        <div className="container mx-auto">
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="max-w-3xl mx-auto text-center space-y-8"
+            viewport={{ once: true, margin: "-80px" }}
+            className="space-y-8 max-w-2xl mx-auto text-center"
           >
-            <motion.h2
-              variants={item}
-              className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight"
-            >
-              Get In Touch
-            </motion.h2>
-            <motion.p
-              variants={item}
-              className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
-            >
-              I'm currently open to new opportunities and collaborations. Feel
-              free to reach out if you'd like to work together.
-            </motion.p>
-            <motion.div
-              variants={item}
-              className="flex justify-center gap-4 pt-2"
-            >
-              <Button size="lg" className="text-sm md:text-base" asChild>
+            <motion.div variants={item} className="space-y-3">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                Let&apos;s Work Together
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Open to new opportunities, freelance projects, and
+                collaborations. I&apos;d love to hear about what you&apos;re
+                building.
+              </p>
+            </motion.div>
+            <motion.div variants={item} className="flex flex-wrap justify-center gap-3">
+              <Button size="lg" asChild>
                 <a href="mailto:joshiprajwal00@gmail.com">
-                  <Mail className="mr-2 h-5 w-5" />
-                  Email Me
+                  <Mail className="mr-2 h-4 w-4" />
+                  joshiprajwal00@gmail.com
                 </a>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-sm md:text-base"
-                asChild
-              >
+              <Button size="lg" variant="outline" asChild>
                 <a
                   href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Linkedin className="mr-2 h-5 w-5" />
+                  <Linkedin className="mr-2 h-4 w-4" />
                   LinkedIn
                 </a>
               </Button>
@@ -304,41 +497,37 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t px-4 md:px-6">
-        <div className="container px-4 mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Prajwal Joshi. All rights reserved.
-              </p>
-            </div>
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com/ojaspj"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-              <a
-                href="mailto:joshiprajwal00@gmail.com"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Mail className="h-5 w-5" />
-                <span className="sr-only">Email</span>
-              </a>
-            </div>
+      <footer className="py-8 px-4 md:px-6">
+        <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Prajwal Joshi. All rights reserved.
+          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/ojaspj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="GitHub"
+            >
+              <Github className="h-4 w-4" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-4 w-4" />
+            </a>
+            <a
+              href="mailto:joshiprajwal00@gmail.com"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Email"
+            >
+              <Mail className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </footer>
