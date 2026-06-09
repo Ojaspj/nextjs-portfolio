@@ -58,7 +58,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="min-h-screen w-full">{children}</main>
+          <main className="min-h-screen w-full pt-14">{children}</main>
         </ThemeProvider>
       </body>
     </html>

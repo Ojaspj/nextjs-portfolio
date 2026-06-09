@@ -1,256 +1,246 @@
 "use client"
 
 import type React from "react"
-
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Mail, MapPin, Send, Github, Linkedin } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
+import Link from "next/link"
+
+const fade = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+}
+
+const stagger = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+}
 
 export default function ContactPage() {
-  const [mounted, setMounted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
   const { toast } = useToast()
 
-  // Prevent hydration mismatch
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    })
-
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    })
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    toast({ title: "Message sent!", description: "I'll get back to you shortly." })
+    setFormData({ name: "", email: "", subject: "", message: "" })
     setIsSubmitting(false)
   }
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  }
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "Email",
-      value: "joshiprajwal00@gmail.com",
-      href: "mailto:joshiprajwal00@gmail.com",
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      value: "India · Remote",
-      href: "#",
-    },
-  ]
-
-  const socialLinks = [
-    {
-      icon: Github,
-      name: "GitHub",
-      href: "https://github.com/ojaspj",
-      color: "hover:text-foreground",
-    },
-    {
-      icon: Linkedin,
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/prajwal-joshi-3b3734156/",
-      color: "hover:text-foreground",
-    },
-  ]
-
   return (
-    <div className="min-h-screen py-20">
-      <div className="container px-4 mx-auto">
-        <motion.div variants={container} initial="hidden" animate="show" className="max-w-6xl mx-auto">
-          {/* Header */}
-          <motion.div variants={item} className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground tracking-tight">
-              Get In Touch
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Have a project in mind or want to collaborate? I'd love to hear from you. Let's create something amazing
-              together.
-            </p>
+    <div className="min-h-screen">
+
+      {/* Page header */}
+      <section className="border-b border-border/60">
+        <div className="container mx-auto px-6 py-20 md:py-24">
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+            className="max-w-5xl mx-auto space-y-4"
+          >
+            <motion.p variants={fade} className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              Contact
+            </motion.p>
+            <motion.h1 variants={fade} className="text-5xl md:text-6xl font-bold tracking-tighter leading-none">
+              Get in touch
+            </motion.h1>
+            <motion.p variants={fade} className="text-base text-muted-foreground max-w-xl leading-relaxed">
+              Have a project in mind or want to collaborate? Send me a message and I&apos;ll get back to you shortly.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Content */}
+      <div className="container mx-auto px-6 py-16">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="show"
+          className="max-w-5xl mx-auto grid lg:grid-cols-5 gap-12"
+        >
+
+          {/* Form */}
+          <motion.div variants={fade} className="lg:col-span-3">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <Label htmlFor="name" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Name</Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your name"
+                    required
+                    className="bg-card border-border/60 focus-visible:ring-1 focus-visible:ring-foreground/30"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="email" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Email</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="your@email.com"
+                    required
+                    className="bg-card border-border/60 focus-visible:ring-1 focus-visible:ring-foreground/30"
+                  />
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="subject" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Subject</Label>
+                <Input
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="What's this about?"
+                  required
+                  className="bg-card border-border/60 focus-visible:ring-1 focus-visible:ring-foreground/30"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="message" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Message</Label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your project..."
+                  rows={7}
+                  required
+                  className="bg-card border-border/60 focus-visible:ring-1 focus-visible:ring-foreground/30 resize-none"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="inline-flex items-center gap-2 rounded-md bg-foreground text-background px-6 py-2.5 text-sm font-medium hover:opacity-80 transition-opacity disabled:opacity-50"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-background/30 border-t-background" />
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    Send message
+                    <Send className="h-3.5 w-3.5" />
+                  </>
+                )}
+              </button>
+            </form>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <motion.div variants={item}>
-              <Card className="border-muted/60">
-                <CardHeader>
-                  <CardTitle className="text-2xl">Send me a message</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Name</Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="Your name"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="your.email@example.com"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="subject">Subject</Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        placeholder="What's this about?"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Message</Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Tell me about your project or idea..."
-                        rows={6}
-                        required
-                      />
-                    </div>
-                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                      {isSubmitting ? (
-                        <>
-                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Send Message
-                          <Send className="ml-2 h-4 w-4" />
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </motion.div>
+          {/* Info */}
+          <motion.div variants={fade} className="lg:col-span-2 space-y-8">
 
-            {/* Contact Information */}
-            <motion.div variants={item} className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
-                <div className="space-y-4">
-                  {contactInfo.map((info, index) => (
-                    <a
-                      key={index}
-                      href={info.href}
-                      className="flex items-center p-4 rounded-lg border border-muted/60 hover:border-primary/30 transition-colors group"
-                    >
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4 group-hover:bg-primary/20 transition-colors">
-                        <info.icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">{info.title}</p>
-                        <p className="text-muted-foreground">{info.value}</p>
-                      </div>
-                    </a>
-                  ))}
+            {/* Contact cards */}
+            <div className="space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Reach me at</p>
+              <a
+                href="mailto:joshiprajwal00@gmail.com"
+                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 hover:border-foreground/20 transition-colors group"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-md bg-muted">
+                  <Mail className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground">Email</p>
+                  <p className="text-sm font-medium">joshiprajwal00@gmail.com</p>
+                </div>
+              </a>
+              <div className="flex items-center gap-3 rounded-lg border border-border bg-card p-4">
+                <div className="flex h-9 w-9 items-center justify-center rounded-md bg-muted">
+                  <MapPin className="h-4 w-4 text-muted-foreground" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground">Location</p>
+                  <p className="text-sm font-medium">India &middot; Remote</p>
                 </div>
               </div>
+            </div>
 
-              <div>
-                <h2 className="text-2xl font-bold mb-6">Follow Me</h2>
-                <div className="flex gap-4">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`w-12 h-12 bg-muted rounded-lg flex items-center justify-center transition-all hover:scale-110 ${social.color}`}
-                    >
-                      <social.icon className="h-6 w-6" />
-                      <span className="sr-only">{social.name}</span>
-                    </a>
-                  ))}
-                </div>
+            {/* Social */}
+            <div className="space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Socials</p>
+              <div className="flex gap-2">
+                <a
+                  href="https://github.com/ojaspj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all"
+                >
+                  <Github className="h-4 w-4" />
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all"
+                >
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
+                </a>
               </div>
+            </div>
 
-              <div className="bg-muted/30 rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-2">Let's work together</h3>
-                <p className="text-muted-foreground mb-4">
-                  I'm always interested in new opportunities and exciting projects. Whether you have a specific project
-                  in mind or just want to connect, feel free to reach out.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Web Development</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">UI/UX Design</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Consulting</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+            {/* Note */}
+            <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-2">
+              <p className="text-sm font-medium">Open to opportunities</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Whether it&apos;s a full-time role, freelance project, or just a conversation — feel free to reach out. I
+                typically respond within 24 hours.
+              </p>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
+
+      {/* Footer */}
+      <footer className="border-t border-border/60 py-8 px-6 mt-8">
+        <div className="container mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Prajwal Joshi
+          </p>
+          <nav className="flex items-center gap-5 text-xs text-muted-foreground">
+            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+            <Link href="/projects" className="hover:text-foreground transition-colors">Projects</Link>
+            <Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link>
+          </nav>
+          <div className="flex items-center gap-4">
+            <a href="https://github.com/ojaspj" target="_blank" rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors">
+              <Github className="h-3.5 w-3.5" />
+            </a>
+            <a href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/" target="_blank" rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors">
+              <Linkedin className="h-3.5 w-3.5" />
+            </a>
+            <a href="mailto:joshiprajwal00@gmail.com"
+              className="text-muted-foreground hover:text-foreground transition-colors">
+              <Mail className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

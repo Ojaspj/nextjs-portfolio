@@ -4,10 +4,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, ArrowUpRight, Download, ExternalLink, Github, Linkedin, Mail } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { projects } from "@/lib/projects";
 
 const techCategories = [
@@ -49,7 +47,7 @@ const experience = [
     location: "Remote",
     period: "2023 – 2024",
     description:
-      "Contributed to a startup ecosystem platform connecting startups with investors and incubators. Developed frontend features using React and Next.js, and contributed to GraphQL API design and PostgreSQL database integration.",
+      "Contributed to a startup ecosystem platform connecting startups with investors and incubators. Developed frontend features with React and Next.js, and contributed to GraphQL API design and PostgreSQL integrations.",
     tags: ["React", "Next.js", "GraphQL", "PostgreSQL", "Tailwind CSS"],
   },
   {
@@ -58,190 +56,176 @@ const experience = [
     location: "Remote",
     period: "2022 – Present",
     description:
-      "Building SaaS products, web applications, and client websites end-to-end. Delivered 7+ projects under the PrajwalApps brand, ranging from mobile apps to full-stack web platforms.",
+      "Building SaaS products, web applications, and client websites end-to-end. Delivered 7+ projects under the PrajwalApps brand ranging from mobile apps to full-stack platforms.",
     tags: ["React", "Next.js", "TypeScript", "Firebase", "Tailwind CSS"],
   },
   {
     role: "Frontend Developer Intern",
-    company: "Add Your Company Here",
+    company: "Add Your Company",
     location: "Add Location",
     period: "2021 – 2022",
     description:
-      "Built and maintained web interfaces, worked on responsive design, and gained hands-on experience with production-level React development.",
+      "Built and maintained web interfaces, worked on responsive design, and gained production-level React experience.",
     tags: ["React", "JavaScript", "CSS", "HTML"],
   },
 ];
 
+const fade = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+const stagger = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+  useEffect(() => { setMounted(true); }, []);
   if (!mounted) return null;
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  };
 
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="py-20 md:py-28 px-4 md:px-6 border-b">
-        <div className="container mx-auto">
+
+      {/* ── Hero ─────────────────────────────────────────── */}
+      <section className="border-b border-border/60">
+        <div className="container mx-auto px-6 py-24 md:py-32">
           <motion.div
-            variants={container}
+            variants={stagger}
             initial="hidden"
             animate="show"
-            className="max-w-3xl mx-auto flex flex-col items-center text-center space-y-6"
+            className="max-w-4xl mx-auto text-center space-y-8"
           >
-            <motion.div variants={item} className="flex items-center gap-2">
-              <span className="relative flex h-2.5 w-2.5">
+            {/* Available badge */}
+            <motion.div variants={fade} className="flex items-center justify-center gap-2">
+              <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
               </span>
-              <span className="text-sm text-muted-foreground font-medium">
+              <span className="text-xs font-medium text-muted-foreground tracking-wide uppercase">
                 Available for work
               </span>
             </motion.div>
 
+            {/* Name */}
             <motion.h1
-              variants={item}
-              className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-foreground"
+              variants={fade}
+              className="text-6xl sm:text-7xl md:text-8xl font-bold tracking-tighter text-foreground leading-none"
             >
               Prajwal Joshi
             </motion.h1>
 
-            <motion.h2
-              variants={item}
-              className="text-xl sm:text-2xl text-muted-foreground font-medium"
+            {/* Role */}
+            <motion.p
+              variants={fade}
+              className="text-lg md:text-xl text-muted-foreground font-medium"
             >
               Front-End Engineer &mdash; React · Next.js · TypeScript
-            </motion.h2>
-
-            <motion.p
-              variants={item}
-              className="text-base text-muted-foreground leading-relaxed max-w-xl"
-            >
-              3+ years building high-performance web applications. I specialize
-              in clean, responsive interfaces and integrating them with robust
-              backend systems. Currently building products under the{" "}
-              <span className="text-foreground font-medium">PrajwalApps</span>{" "}
-              brand.
             </motion.p>
 
-            <motion.div variants={item} className="flex flex-wrap justify-center gap-3 pt-1">
-              <Button size="lg" asChild>
-                <a href="#projects">View Projects</a>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <a href="#contact">Contact Me</a>
-              </Button>
-              <Button size="lg" variant="ghost" asChild>
-                <a href="/resume.pdf" download>
-                  <Download className="mr-2 h-4 w-4" />
-                  Resume
-                </a>
-              </Button>
+            {/* Bio */}
+            <motion.p
+              variants={fade}
+              className="text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto"
+            >
+              3+ years building high-performance web applications. I specialize in
+              clean, responsive interfaces integrated with robust backend systems.
+              Currently building products under the{" "}
+              <span className="text-foreground font-medium">PrajwalApps</span> brand.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div variants={fade} className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 rounded-md bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:opacity-80 transition-opacity"
+              >
+                View Projects
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-md border border-border bg-background text-foreground px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
+              >
+                Contact Me
+              </Link>
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center gap-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground px-4 py-2.5 transition-colors"
+              >
+                <Download className="h-4 w-4" />
+                Resume
+              </a>
             </motion.div>
 
-            <motion.div variants={item} className="flex items-center justify-center gap-5 pt-1">
-              <a
-                href="https://github.com/ojaspj"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="mailto:joshiprajwal00@gmail.com"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
+            {/* Stats */}
+            <motion.div
+              variants={fade}
+              className="flex items-center justify-center gap-8 pt-2 text-sm text-muted-foreground"
+            >
+              <span><strong className="text-foreground font-semibold">3+</strong> Years</span>
+              <span className="w-px h-4 bg-border" />
+              <span><strong className="text-foreground font-semibold">7+</strong> Projects</span>
+              <span className="w-px h-4 bg-border" />
+              <span><strong className="text-foreground font-semibold">100%</strong> Remote</span>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="py-20 md:py-28 px-4 md:px-6 border-b">
-        <div className="container mx-auto">
+      {/* ── About ────────────────────────────────────────── */}
+      <section id="about" className="border-b border-border/60">
+        <div className="container mx-auto px-6 py-20 md:py-28">
           <motion.div
-            variants={container}
+            variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="grid md:grid-cols-5 gap-12 max-w-5xl mx-auto"
+            viewport={{ once: true, margin: "-60px" }}
+            className="max-w-5xl mx-auto grid md:grid-cols-5 gap-16 items-start"
           >
-            <motion.div variants={item} className="md:col-span-3 space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                About Me
+            <motion.div variants={fade} className="md:col-span-3 space-y-5">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                About
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                Building the web, one clean component at a time.
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Hi, I&apos;m Prajwal — a frontend developer with a strong eye
-                  for clean design and a growing passion for building full-stack
-                  applications. I specialize in crafting responsive,
-                  user-friendly interfaces using React, Next.js, and Tailwind
-                  CSS.
+                  Hi, I&apos;m Prajwal — a frontend developer with a strong eye for
+                  clean design and a growing passion for full-stack development.
+                  I craft responsive, user-friendly interfaces using React,
+                  Next.js, and Tailwind CSS.
                 </p>
                 <p>
-                  My work focuses on creating smooth, modern experiences that
-                  not only look good but also solve real problems. I believe in
-                  writing clean, scalable code and designing intuitive interfaces
-                  that feel effortless to use.
+                  I believe in writing clean, scalable code and designing intuitive
+                  interfaces that feel effortless to use. Whether it&apos;s a
+                  single-page app or a complete SaaS product, I keep things
+                  simple, efficient, and impactful.
                 </p>
                 <p>
                   I&apos;m building a collection of apps under the{" "}
-                  <span className="text-foreground font-medium">
-                    PrajwalApps
-                  </span>{" "}
-                  brand — turning concepts into polished, usable products.
+                  <span className="text-foreground font-medium">PrajwalApps</span>{" "}
+                  brand — turning ideas into polished, usable products.
                 </p>
               </div>
             </motion.div>
 
-            <motion.div
-              variants={item}
-              className="md:col-span-2 grid grid-cols-2 gap-4 content-start"
-            >
+            <motion.div variants={fade} className="md:col-span-2 grid grid-cols-2 gap-3">
               {[
-                { value: "3+", label: "Years Experience" },
-                { value: "7+", label: "Projects Built" },
+                { value: "3+", label: "Years of experience" },
+                { value: "7+", label: "Projects shipped" },
                 { value: "10+", label: "Technologies" },
-                { value: "100%", label: "Remote Ready" },
-              ].map((stat) => (
+                { value: "100%", label: "Remote ready" },
+              ].map((s) => (
                 <div
-                  key={stat.label}
-                  className="border rounded-lg p-5 text-center space-y-1"
+                  key={s.label}
+                  className="rounded-lg border border-border bg-card p-5 text-center space-y-1.5"
                 >
-                  <p className="text-3xl font-bold text-foreground">
-                    {stat.value}
-                  </p>
-                  <p className="text-xs text-muted-foreground">{stat.label}</p>
+                  <p className="text-3xl font-bold tracking-tight">{s.value}</p>
+                  <p className="text-xs text-muted-foreground">{s.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -249,106 +233,97 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience */}
-      <section
-        id="experience"
-        className="py-20 md:py-28 px-4 md:px-6 border-b bg-muted/20"
-      >
-        <div className="container mx-auto">
+      {/* ── Experience ───────────────────────────────────── */}
+      <section id="experience" className="border-b border-border/60 bg-muted/30">
+        <div className="container mx-auto px-6 py-20 md:py-28">
           <motion.div
-            variants={container}
+            variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="space-y-12 max-w-3xl mx-auto"
+            viewport={{ once: true, margin: "-60px" }}
+            className="max-w-3xl mx-auto space-y-12"
           >
-            <motion.div variants={item} className="space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                Work Experience
-              </h2>
-              <p className="text-muted-foreground">
-                My professional journey so far.
+            <motion.div variants={fade} className="space-y-1">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                Experience
               </p>
+              <h2 className="text-3xl font-bold tracking-tight">Work History</h2>
             </motion.div>
 
-            <motion.div variants={item} className="relative space-y-0">
+            <motion.div variants={fade} className="relative">
               <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" />
-              {experience.map((exp, index) => (
-                <div key={index} className="relative pl-8 pb-10 last:pb-0">
-                  <div className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-foreground bg-background" />
-                  <div className="space-y-2">
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                      <div>
-                        <h3 className="font-semibold text-foreground text-base leading-tight">
-                          {exp.role}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mt-0.5">
-                          {exp.company} &middot; {exp.location}
-                        </p>
+              <div className="space-y-10">
+                {experience.map((exp, i) => (
+                  <div key={i} className="relative pl-8">
+                    <div className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-foreground bg-background" />
+                    <div className="space-y-2">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5">
+                        <div>
+                          <h3 className="font-semibold text-foreground">{exp.role}</h3>
+                          <p className="text-sm text-muted-foreground">
+                            {exp.company} &middot; {exp.location}
+                          </p>
+                        </div>
+                        <span className="shrink-0 text-xs text-muted-foreground border border-border rounded-full px-3 py-1 self-start">
+                          {exp.period}
+                        </span>
                       </div>
-                      <span className="text-xs text-muted-foreground font-medium whitespace-nowrap border rounded-full px-3 py-1 self-start">
-                        {exp.period}
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {exp.description}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {exp.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="text-xs font-normal"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {exp.description}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5 pt-0.5">
+                        {exp.tags.map((t) => (
+                          <Badge key={t} variant="secondary" className="text-xs font-normal">
+                            {t}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Tech Stack */}
-      <section className="py-20 md:py-28 px-4 md:px-6 border-b">
-        <div className="container mx-auto">
+      {/* ── Tech Stack ───────────────────────────────────── */}
+      <section id="stack" className="border-b border-border/60">
+        <div className="container mx-auto px-6 py-20 md:py-28">
           <motion.div
-            variants={container}
+            variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="space-y-10 max-w-4xl mx-auto"
+            viewport={{ once: true, margin: "-60px" }}
+            className="max-w-4xl mx-auto space-y-10"
           >
-            <motion.div variants={item} className="space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                Tech Stack
-              </h2>
-              <p className="text-muted-foreground">
-                Tools and technologies I use to build modern applications.
+            <motion.div variants={fade} className="space-y-1">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                Stack
               </p>
+              <h2 className="text-3xl font-bold tracking-tight">
+                Tools I build with
+              </h2>
             </motion.div>
 
-            <motion.div variants={item} className="space-y-8">
+            <motion.div variants={fade} className="space-y-7">
               {techCategories.map((cat) => (
                 <div key={cat.label} className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/70">
                     {cat.label}
                   </p>
-                  <div className="flex flex-wrap gap-2.5">
+                  <div className="flex flex-wrap gap-2">
                     {cat.skills.map((skill) => (
                       <div
                         key={skill.name}
-                        className="group flex items-center gap-2.5 rounded-lg border bg-background px-4 py-2.5 text-sm font-medium transition-all duration-200 hover:border-foreground/30 hover:shadow-sm cursor-default select-none"
+                        className="group flex items-center gap-2 rounded-md border border-border bg-card px-3.5 py-2 text-sm font-medium transition-all duration-150 hover:border-foreground/25 hover:shadow-sm cursor-default select-none"
                       >
                         <img
                           src={skill.image}
                           alt={skill.name}
-                          className="h-[18px] w-[18px] object-contain shrink-0"
+                          className="h-4 w-4 object-contain shrink-0"
                         />
-                        <span className="text-foreground/80 group-hover:text-foreground transition-colors">
+                        <span className="text-foreground/75 group-hover:text-foreground transition-colors">
                           {skill.name}
                         </span>
                       </div>
@@ -361,172 +336,158 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects */}
-      <section
-        id="projects"
-        className="py-20 md:py-28 px-4 md:px-6 border-b bg-muted/20"
-      >
-        <div className="container mx-auto">
+      {/* ── Selected Work ────────────────────────────────── */}
+      <section id="work" className="border-b border-border/60 bg-muted/30">
+        <div className="container mx-auto px-6 py-20 md:py-28">
           <motion.div
-            variants={container}
+            variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="space-y-10 max-w-5xl mx-auto"
+            viewport={{ once: true, margin: "-60px" }}
+            className="max-w-5xl mx-auto space-y-10"
           >
-            <motion.div
-              variants={item}
-              className="flex items-end justify-between"
-            >
-              <div className="space-y-2">
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                  Featured Projects
-                </h2>
-                <p className="text-muted-foreground">
-                  A selection of recent work.
+            <motion.div variants={fade} className="flex items-end justify-between">
+              <div className="space-y-1">
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  Work
                 </p>
+                <h2 className="text-3xl font-bold tracking-tight">
+                  Selected Projects
+                </h2>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                asChild
-                className="hidden sm:flex"
+              <Link
+                href="/projects"
+                className="hidden sm:inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                <Link href="/projects">
-                  View all
-                  <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </Button>
+                View all
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
             </motion.div>
 
-            <motion.div
-              variants={item}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {projects.slice(0, 3).map((project, index) => (
+            <motion.div variants={fade} className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {projects.slice(0, 3).map((project) => (
                 <Link
-                  key={index}
+                  key={project.slug}
                   href={`/projects/${project.slug}`}
-                  className="block h-full group"
+                  className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden hover:border-foreground/20 hover:shadow-md transition-all duration-200"
                 >
-                  <Card className="overflow-hidden h-full border hover:border-foreground/30 transition-all duration-200 hover:-translate-y-0.5">
-                    <div className="relative aspect-video overflow-hidden bg-muted">
-                      <Image
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+                  <div className="relative aspect-video overflow-hidden bg-muted">
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ArrowUpRight className="h-3.5 w-3.5" />
                     </div>
-                    <CardContent className="p-5 space-y-3">
-                      <h3 className="font-semibold leading-snug group-hover:text-muted-foreground transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5 pt-0.5">
-                        {project.tags.slice(0, 3).map((tag) => (
-                          <Badge
-                            key={tag}
-                            variant="secondary"
-                            className="text-xs font-normal"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
+                  </div>
+                  <div className="flex flex-col flex-1 p-5 space-y-2.5">
+                    <h3 className="font-semibold text-foreground leading-snug group-hover:text-foreground/70 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed flex-1">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {project.tags.slice(0, 3).map((tag) => (
+                        <Badge key={tag} variant="secondary" className="text-xs font-normal">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
                 </Link>
               ))}
             </motion.div>
 
-            <motion.div variants={item} className="sm:hidden">
-              <Button variant="outline" asChild className="w-full">
-                <Link href="/projects">
-                  View All Projects
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+            <motion.div variants={fade} className="sm:hidden">
+              <Link
+                href="/projects"
+                className="flex items-center justify-center gap-2 w-full rounded-md border border-border py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              >
+                View all projects
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-20 md:py-28 px-4 md:px-6 border-b">
-        <div className="container mx-auto">
+      {/* ── Contact ──────────────────────────────────────── */}
+      <section id="contact" className="border-b border-border/60">
+        <div className="container mx-auto px-6 py-20 md:py-28">
           <motion.div
-            variants={container}
+            variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="space-y-8 max-w-2xl mx-auto text-center"
+            viewport={{ once: true, margin: "-60px" }}
+            className="max-w-2xl mx-auto text-center space-y-7"
           >
-            <motion.div variants={item} className="space-y-3">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                Let&apos;s Work Together
+            <motion.div variants={fade} className="space-y-4">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                Contact
+              </p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+                Let&apos;s work together.
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Open to new opportunities, freelance projects, and
-                collaborations. I&apos;d love to hear about what you&apos;re
-                building.
+                Open to new opportunities, freelance projects, and interesting
+                collaborations. Drop me a line and I&apos;ll get back to you promptly.
               </p>
             </motion.div>
-            <motion.div variants={item} className="flex flex-wrap justify-center gap-3">
-              <Button size="lg" asChild>
-                <a href="mailto:joshiprajwal00@gmail.com">
-                  <Mail className="mr-2 h-4 w-4" />
-                  joshiprajwal00@gmail.com
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <a
-                  href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin className="mr-2 h-4 w-4" />
-                  LinkedIn
-                </a>
-              </Button>
+
+            <motion.div variants={fade} className="flex flex-wrap justify-center gap-3">
+              <a
+                href="mailto:joshiprajwal00@gmail.com"
+                className="inline-flex items-center gap-2 rounded-md bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:opacity-80 transition-opacity"
+              >
+                <Mail className="h-4 w-4" />
+                joshiprajwal00@gmail.com
+              </a>
+              <a
+                href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-md border border-border bg-background text-foreground px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
+              >
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
+              </a>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-md border border-border bg-background text-foreground px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
+              >
+                Send a message
+              </Link>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 md:px-6">
-        <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Prajwal Joshi. All rights reserved.
+      {/* ── Footer ───────────────────────────────────────── */}
+      <footer className="py-8 px-6">
+        <div className="container mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Prajwal Joshi
           </p>
+          <nav className="flex items-center gap-5 text-xs text-muted-foreground">
+            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+            <Link href="/projects" className="hover:text-foreground transition-colors">Projects</Link>
+            <Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link>
+          </nav>
           <div className="flex items-center gap-4">
-            <a
-              href="https://github.com/ojaspj"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="GitHub"
-            >
-              <Github className="h-4 w-4" />
+            <a href="https://github.com/ojaspj" target="_blank" rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
+              <Github className="h-3.5 w-3.5" />
             </a>
-            <a
-              href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-4 w-4" />
+            <a href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/" target="_blank" rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors" aria-label="LinkedIn">
+              <Linkedin className="h-3.5 w-3.5" />
             </a>
-            <a
-              href="mailto:joshiprajwal00@gmail.com"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="h-4 w-4" />
+            <a href="mailto:joshiprajwal00@gmail.com"
+              className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Email">
+              <Mail className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
