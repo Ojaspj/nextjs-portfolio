@@ -4,60 +4,68 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { projects } from "@/lib/projects";
 
-const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
-
 const fade = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.15, ease: "easeOut" } },
 };
 
 const stagger = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.07 } },
 };
+
+const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
 
 export default function ProjectsPage() {
   const [active, setActive] = useState<string | null>(null);
-
-  const filtered = active
-    ? projects.filter((p) => p.tags.includes(active))
-    : projects;
+  const filtered = active ? projects.filter((p) => p.tags.includes(active)) : projects;
 
   return (
-    <div className="min-h-screen">
-
-      {/* Header */}
-      <section className="border-b border-border/60">
-        <div className="container mx-auto px-6 py-20 md:py-24">
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-            className="max-w-5xl mx-auto space-y-6"
-          >
-            <motion.p variants={fade} className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+    <>
+      {/* Page header */}
+      <section
+        className="border-b border-line"
+        style={{ paddingTop: "clamp(56px,10vh,112px)", paddingBottom: "clamp(40px,6vh,72px)" }}
+      >
+        <div className="wrap">
+          <motion.div variants={stagger} initial="hidden" animate="show">
+            <motion.p
+              variants={fade}
+              className="font-mono uppercase text-brand mb-4"
+              style={{ fontSize: "12.5px", letterSpacing: ".14em" }}
+            >
               Work
             </motion.p>
-            <motion.h1 variants={fade} className="text-5xl md:text-6xl font-bold tracking-tighter leading-none">
+            <motion.h1
+              variants={fade}
+              className="font-display font-semibold text-ink mb-4"
+              style={{ fontSize: "clamp(34px,6vw,56px)", lineHeight: 1.04, letterSpacing: "-0.02em" }}
+            >
               Projects
             </motion.h1>
-            <motion.p variants={fade} className="text-base text-muted-foreground max-w-xl leading-relaxed">
-              A collection of things I&apos;ve built — from SaaS tools and mobile apps to full-stack platforms.
+            <motion.p
+              variants={fade}
+              className="text-slate mb-8"
+              style={{ maxWidth: "52ch", fontSize: "clamp(16px,2vw,18px)" }}
+            >
+              A collection of things I&apos;ve built — from SaaS tools and mobile apps to
+              full-stack platforms.
             </motion.p>
 
             {/* Tag filters */}
-            <motion.div variants={fade} className="flex flex-wrap gap-2 pt-2">
+            <motion.div variants={fade} className="flex flex-wrap gap-2">
               <button
                 onClick={() => setActive(null)}
-                className={`rounded-full border px-3.5 py-1 text-xs font-medium transition-colors ${
-                  active === null
-                    ? "bg-foreground text-background border-foreground"
-                    : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
-                }`}
+                className="font-mono text-[11.5px] border transition-colors duration-[120ms]"
+                style={{
+                  borderRadius: "2px",
+                  padding: "5px 11px",
+                  borderColor: active === null ? "var(--brand)" : "var(--line)",
+                  color: active === null ? "var(--brand)" : "var(--slate)",
+                  backgroundColor: "transparent",
+                }}
               >
                 All
               </button>
@@ -65,11 +73,14 @@ export default function ProjectsPage() {
                 <button
                   key={tag}
                   onClick={() => setActive(active === tag ? null : tag)}
-                  className={`rounded-full border px-3.5 py-1 text-xs font-medium transition-colors ${
-                    active === tag
-                      ? "bg-foreground text-background border-foreground"
-                      : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
-                  }`}
+                  className="font-mono text-[11.5px] border transition-colors duration-[120ms]"
+                  style={{
+                    borderRadius: "2px",
+                    padding: "5px 11px",
+                    borderColor: active === tag ? "var(--brand)" : "var(--line)",
+                    color: active === tag ? "var(--brand)" : "var(--slate)",
+                    backgroundColor: "transparent",
+                  }}
                 >
                   {tag}
                 </button>
@@ -79,86 +90,89 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Grid */}
-      <section>
-        <div className="container mx-auto px-6 py-16">
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-            className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
-          >
-            {filtered.map((project) => (
-              <motion.div key={project.slug} variants={fade}>
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="group flex flex-col h-full rounded-xl border border-border bg-card overflow-hidden hover:border-foreground/20 hover:shadow-md transition-all duration-200"
-                >
-                  <div className="relative aspect-video overflow-hidden bg-muted">
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </div>
-                  </div>
-                  <div className="flex flex-col flex-1 p-5 space-y-2.5">
-                    <h2 className="font-semibold text-foreground leading-snug group-hover:text-foreground/70 transition-colors">
+      {/* Project rows */}
+      <section style={{ paddingBlock: "clamp(40px,7vh,80px)" }}>
+        <div className="wrap">
+          <motion.div variants={stagger} initial="hidden" animate="show">
+            {filtered.map((project, i) => (
+              <motion.div
+                key={project.slug}
+                variants={fade}
+                className={[
+                  "grid grid-cols-1 sm:grid-cols-[64px_1fr_auto] gap-x-7 gap-y-2 py-[30px] hover:bg-paper-2 transition-colors duration-[120ms] rounded-sm",
+                  i > 0 ? "border-t border-line" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                {/* Index */}
+                <span className="hidden sm:block font-mono text-[13px] text-slate pt-0.5">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                {/* Content */}
+                <div>
+                  <Link href={`/projects/${project.slug}`}>
+                    <h2
+                      className="font-display font-semibold text-ink hover:text-brand transition-colors duration-[120ms] mb-2"
+                      style={{ fontSize: "20px" }}
+                    >
                       {project.title}
                     </h2>
-                    <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed flex-1">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {project.tags.slice(0, 3).map((tag) => (
-                        <Badge key={tag} variant="secondary" className="text-xs font-normal">
-                          {tag}
-                        </Badge>
-                      ))}
-                      {project.tags.length > 3 && (
-                        <Badge variant="secondary" className="text-xs font-normal">
-                          +{project.tags.length - 3}
-                        </Badge>
-                      )}
-                    </div>
+                  </Link>
+                  <p
+                    className="text-slate mb-3"
+                    style={{ maxWidth: "60ch", fontSize: "15px", lineHeight: 1.6 }}
+                  >
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.slice(0, 4).map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-mono text-slate border border-line"
+                        style={{ fontSize: "11.5px", borderRadius: "2px", padding: "4px 9px" }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                </Link>
+                </div>
+
+                {/* Links */}
+                <div className="flex sm:flex-col flex-row flex-wrap gap-3 sm:gap-2 sm:items-end sm:pt-0.5 pt-2">
+                  {project.demoUrl && project.demoUrl !== "null" && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-[13px] text-brand underline decoration-brand hover:opacity-60 transition-opacity duration-[120ms] whitespace-nowrap"
+                    >
+                      Live ↗
+                    </a>
+                  )}
+                  {project.githubUrl && project.githubUrl !== "null" && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-[13px] text-slate hover:opacity-60 transition-opacity duration-[120ms] whitespace-nowrap"
+                    >
+                      Code
+                    </a>
+                  )}
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="font-mono text-[13px] text-slate hover:opacity-60 transition-opacity duration-[120ms] whitespace-nowrap"
+                  >
+                    Details →
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border/60 py-8 px-6 mt-8">
-        <div className="container mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Prajwal Joshi
-          </p>
-          <nav className="flex items-center gap-5 text-xs text-muted-foreground">
-            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-            <Link href="/projects" className="hover:text-foreground transition-colors">Projects</Link>
-            <Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <a href="https://github.com/ojaspj" target="_blank" rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors">
-              <Github className="h-3.5 w-3.5" />
-            </a>
-            <a href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/" target="_blank" rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors">
-              <Linkedin className="h-3.5 w-3.5" />
-            </a>
-            <a href="mailto:joshiprajwal00@gmail.com"
-              className="text-muted-foreground hover:text-foreground transition-colors">
-              <Mail className="h-3.5 w-3.5" />
-            </a>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }

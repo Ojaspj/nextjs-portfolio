@@ -4,58 +4,121 @@
 
 @layer base {
   :root {
-    --background: 40 20% 97%;
-    --foreground: 0 0% 7%;
+    /* shadcn HSL vars — tuned to match spec palette */
+    --background: 218 19% 97%;
+    --foreground: 218 14% 9%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 7%;
+    --card-foreground: 218 14% 9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 7%;
-    --primary: 0 0% 7%;
+    --popover-foreground: 218 14% 9%;
+    --primary: 218 14% 9%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 40 12% 93%;
-    --secondary-foreground: 0 0% 7%;
-    --muted: 40 12% 93%;
-    --muted-foreground: 0 0% 42%;
-    --accent: 40 12% 93%;
-    --accent-foreground: 0 0% 7%;
+    --secondary: 215 11% 90%;
+    --secondary-foreground: 218 14% 9%;
+    --muted: 215 14% 93%;
+    --muted-foreground: 215 11% 40%;
+    --accent: 215 11% 90%;
+    --accent-foreground: 218 14% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 40 12% 88%;
-    --input: 40 12% 88%;
-    --ring: 0 0% 7%;
-    --radius: 0.375rem;
+    --border: 215 11% 90%;
+    --input: 215 11% 90%;
+    --ring: 228 100% 59%;
+    --radius: 0.125rem;
+
+    /* Spec design tokens */
+    --paper: #FFFFFF;
+    --paper-2: #F5F6F8;
+    --ink: #14161A;
+    --slate: #5B6573;
+    --line: #E2E5EA;
+    --brand: #2F5CFF;
+    --success: #22B07D;
+    --maxw: 1080px;
+    --gutter: clamp(20px, 5vw, 64px);
   }
+
   .dark {
-    --background: 0 0% 6%;
-    --foreground: 0 0% 95%;
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 0 0% 95%;
-    --primary-foreground: 0 0% 7%;
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 0 0% 14%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 0 0% 14%;
-    --accent-foreground: 0 0% 95%;
+    --background: 222 17% 8%;
+    --foreground: 228 22% 93%;
+    --card: 222 16% 12%;
+    --card-foreground: 228 22% 93%;
+    --popover: 222 16% 12%;
+    --popover-foreground: 228 22% 93%;
+    --primary: 228 22% 93%;
+    --primary-foreground: 222 17% 8%;
+    --secondary: 222 12% 19%;
+    --secondary-foreground: 228 22% 93%;
+    --muted: 222 12% 19%;
+    --muted-foreground: 213 10% 53%;
+    --accent: 222 12% 19%;
+    --accent-foreground: 228 22% 93%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 0 0% 85%;
+    --border: 222 12% 20%;
+    --input: 222 12% 20%;
+    --ring: 228 100% 66%;
+
+    --paper: #111318;
+    --paper-2: #1A1D24;
+    --ink: #E8EAF0;
+    --slate: #7B8694;
+    --line: #2A2D35;
+    --brand: #4F7AFF;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
 }
 
-@layer base {
-  * { @apply border-border; }
-  body { @apply bg-background text-foreground; }
+@layer components {
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
 }
 
-html { scroll-behavior: smooth; }
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
 
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.4); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--slate); }

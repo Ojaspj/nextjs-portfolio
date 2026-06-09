@@ -1,70 +1,53 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Github, Linkedin, Mail } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { cn } from "@/lib/utils"
-import { useEffect, useState } from "react"
+import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { useEffect, useState } from "react";
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-    const onScroll = () => setScrolled(window.scrollY > 10)
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
-
-  if (!mounted) return null
+    setMounted(true);
+  }, []);
 
   return (
     <header
-      className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300",
-        scrolled
-          ? "bg-background/90 backdrop-blur-md border-b border-border/60"
-          : "bg-transparent"
-      )}
+      className="fixed top-0 z-50 w-full bg-[rgba(246,247,249,0.82)] dark:bg-[rgba(17,19,24,0.85)] backdrop-blur-[8px] border-b border-line"
+      style={{ height: "60px" }}
     >
-      <div className="container mx-auto flex h-14 items-center justify-between px-6">
+      <div className="wrap flex h-full items-center justify-between">
+        {/* Brand */}
         <Link
           href="/"
-          className="text-sm font-semibold tracking-tight hover:opacity-70 transition-opacity"
+          className="font-mono text-[13.5px] tracking-tight text-ink hover:opacity-70 transition-opacity duration-150"
         >
-          Prajwal Joshi
+          prajwal<span className="text-brand">.</span>joshi
         </Link>
 
-        <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/ojaspj"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="GitHub"
-          >
-            <Github className="h-4 w-4" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="h-4 w-4" />
-          </a>
-          <a
-            href="mailto:joshiprajwal00@gmail.com"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Email"
-          >
-            <Mail className="h-4 w-4" />
-          </a>
-          <ThemeToggle />
-        </div>
+        {/* Nav */}
+        <nav className="flex items-center gap-1 sm:gap-0">
+          {[
+            { label: "work", href: "/#work" },
+            { label: "about", href: "/#about" },
+            { label: "contact", href: "/#contact" },
+          ].map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="font-mono text-[13px] text-slate hover:text-ink transition-colors duration-150 px-2 sm:px-3"
+            >
+              <span className="text-line mr-0.5">/</span>
+              {item.label}
+            </Link>
+          ))}
+          {mounted && (
+            <span className="ml-1 sm:ml-2">
+              <ThemeToggle />
+            </span>
+          )}
+        </nav>
       </div>
     </header>
-  )
+  );
 }

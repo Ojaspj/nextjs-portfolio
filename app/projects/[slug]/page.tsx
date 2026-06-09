@@ -4,37 +4,39 @@ import { useEffect, useState } from "react";
 import { useParams, notFound } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Github, Linkedin, Mail } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { projects } from "@/lib/projects";
 import Link from "next/link";
+import { projects } from "@/lib/projects";
 import ImageGallery from "@/components/image-gallery";
 
 const fade = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.15, ease: "easeOut" } },
 };
 
 const stagger = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.07 } },
 };
 
 export default function ProjectPage() {
   const { slug } = useParams();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   if (!mounted) return null;
 
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  return (
-    <div className="min-h-screen">
+  const otherProjects = projects.filter((p) => p.slug !== project.slug).slice(0, 3);
 
-      {/* Hero banner */}
-      <section className="relative w-full h-[45vh] md:h-[55vh] overflow-hidden border-b border-border/60">
+  return (
+    <>
+      {/* Banner */}
+      <section className="relative w-full overflow-hidden border-b border-line" style={{ height: "clamp(240px,40vh,480px)" }}>
         <Image
           src={project.banner || project.image}
           alt={project.title}
@@ -42,171 +44,199 @@ export default function ProjectPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 container mx-auto px-6 pb-8">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-1.5 mb-5 text-xs text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="h-3 w-3" />
-            All projects
-          </Link>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tighter leading-none mb-2">
-            {project.title}
-          </h1>
-          <p className="text-base text-muted-foreground max-w-2xl">{project.description}</p>
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, var(--paper) 0%, rgba(0,0,0,0.3) 100%)" }} />
+        <div className="absolute bottom-0 left-0 right-0">
+          <div className="wrap pb-8">
+            <Link
+              href="/projects"
+              className="font-mono text-[12px] text-slate hover:text-ink transition-colors duration-[120ms] inline-flex items-center gap-1 mb-4"
+            >
+              ← All projects
+            </Link>
+            <h1
+              className="font-display font-semibold text-ink mb-2"
+              style={{ fontSize: "clamp(28px,5vw,48px)", lineHeight: 1.04, letterSpacing: "-0.02em" }}
+            >
+              {project.title}
+            </h1>
+            <p className="text-slate" style={{ maxWidth: "54ch", fontSize: "16px" }}>
+              {project.description}
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Content */}
-      <div className="container mx-auto px-6 py-16">
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="show"
-          className="max-w-5xl mx-auto grid md:grid-cols-3 gap-12"
-        >
-          {/* Main */}
-          <motion.div variants={fade} className="md:col-span-2 space-y-12">
+      <section style={{ paddingBlock: "clamp(48px,8vh,96px)" }}>
+        <div className="wrap">
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-12 md:gap-16"
+          >
+            {/* Main */}
+            <motion.div variants={fade} className="space-y-12">
 
-            {/* Overview */}
-            <div className="space-y-4">
-              <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Overview</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                {project.process ||
-                  `${project.title} is a comprehensive application designed to provide users with a seamless experience. Built with a focus on performance, accessibility, and user experience.`}
-              </p>
-            </div>
-
-            {/* Features */}
-            <div className="space-y-4">
-              <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Features</h2>
-              <ul className="space-y-2.5">
-                {project.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground/40" />
-                    <span className="text-sm text-muted-foreground leading-relaxed">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Screenshots */}
-            {project.screenshots && project.screenshots.length > 0 && (
-              <div className="space-y-4">
-                <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Screenshots</h2>
-                <ImageGallery images={project.screenshots} alt={project.title} />
+              {/* Overview */}
+              <div>
+                <p
+                  className="font-mono uppercase text-slate mb-4"
+                  style={{ fontSize: "11px", letterSpacing: ".08em" }}
+                >
+                  Overview
+                </p>
+                <p className="text-ink" style={{ fontSize: "17px", lineHeight: 1.7 }}>
+                  {project.process ||
+                    `${project.title} is a comprehensive application built with a focus on performance, accessibility, and user experience.`}
+                </p>
               </div>
-            )}
-          </motion.div>
 
-          {/* Sidebar */}
-          <motion.div variants={fade} className="space-y-6">
-            <div className="rounded-xl border border-border bg-card p-6 space-y-6">
+              {/* Features */}
+              <div>
+                <p
+                  className="font-mono uppercase text-slate mb-4"
+                  style={{ fontSize: "11px", letterSpacing: ".08em" }}
+                >
+                  Features
+                </p>
+                <ul className="space-y-2.5">
+                  {project.features.map((feature, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span
+                        className="shrink-0 rounded-full bg-slate/40 mt-[10px]"
+                        style={{ width: "5px", height: "5px" }}
+                      />
+                      <span className="text-slate" style={{ fontSize: "15px", lineHeight: 1.6 }}>
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Screenshots */}
+              {project.screenshots && project.screenshots.length > 0 && (
+                <div>
+                  <p
+                    className="font-mono uppercase text-slate mb-4"
+                    style={{ fontSize: "11px", letterSpacing: ".08em" }}
+                  >
+                    Screenshots
+                  </p>
+                  <ImageGallery images={project.screenshots} alt={project.title} />
+                </div>
+              )}
+            </motion.div>
+
+            {/* Sidebar */}
+            <motion.div variants={fade} className="space-y-8">
 
               {/* Tech stack */}
-              <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Tech Stack</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.techStack.map((tech) => (
-                    <Badge key={tech} variant="outline" className="text-xs font-normal">
-                      {tech}
-                    </Badge>
-                  ))}
+              <div
+                className="border border-line bg-paper-2 p-6 space-y-6"
+                style={{ borderRadius: "2px" }}
+              >
+                <div>
+                  <p
+                    className="font-mono uppercase text-slate mb-3"
+                    style={{ fontSize: "11px", letterSpacing: ".08em" }}
+                  >
+                    Tech Stack
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="font-mono text-ink border border-line bg-paper"
+                        style={{ fontSize: "12px", borderRadius: "2px", padding: "5px 9px" }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-line" />
+
+                {/* Category tags */}
+                <div>
+                  <p
+                    className="font-mono uppercase text-slate mb-3"
+                    style={{ fontSize: "11px", letterSpacing: ".08em" }}
+                  >
+                    Category
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-mono text-slate border border-line"
+                        style={{ fontSize: "11.5px", borderRadius: "2px", padding: "4px 9px" }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-line" />
+
+                {/* Links */}
+                <div className="space-y-2.5">
+                  {project.demoUrl && project.demoUrl !== "null" && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full font-mono text-[13px] bg-ink text-paper hover:bg-brand transition-colors duration-150 active:translate-y-px"
+                      style={{ padding: "11px 18px", borderRadius: "2px" }}
+                    >
+                      Live Demo ↗
+                    </a>
+                  )}
+                  {project.githubUrl && project.githubUrl !== "null" && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full font-mono text-[13px] text-ink border border-ink hover:bg-ink hover:text-paper transition-colors duration-150 active:translate-y-px"
+                      style={{ padding: "11px 18px", borderRadius: "2px" }}
+                    >
+                      Source Code
+                    </a>
+                  )}
                 </div>
               </div>
 
-              <div className="w-full h-px bg-border" />
-
-              {/* Tags */}
-              <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Category</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-xs font-normal">
-                      {tag}
-                    </Badge>
-                  ))}
+              {/* More projects */}
+              {otherProjects.length > 0 && (
+                <div>
+                  <p
+                    className="font-mono uppercase text-slate mb-3"
+                    style={{ fontSize: "11px", letterSpacing: ".08em" }}
+                  >
+                    More Projects
+                  </p>
+                  <div className="space-y-2">
+                    {otherProjects.map((p) => (
+                      <Link
+                        key={p.slug}
+                        href={`/projects/${p.slug}`}
+                        className="flex items-center justify-between border border-line bg-paper-2 text-slate hover:text-ink hover:border-ink transition-colors duration-[120ms] px-4 py-3"
+                        style={{ borderRadius: "2px" }}
+                      >
+                        <span className="font-mono text-[13px] truncate pr-2">{p.title}</span>
+                        <span className="font-mono text-[13px] shrink-0">→</span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              <div className="w-full h-px bg-border" />
-
-              {/* Links */}
-              <div className="space-y-2.5">
-                {project.demoUrl !== "null" && (
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full rounded-md bg-foreground text-background px-4 py-2 text-sm font-medium hover:opacity-80 transition-opacity"
-                  >
-                    <ExternalLink className="h-3.5 w-3.5" />
-                    View Live Demo
-                  </a>
-                )}
-                {project.githubUrl !== "null" && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full rounded-md border border-border bg-background text-foreground px-4 py-2 text-sm font-medium hover:bg-muted transition-colors"
-                  >
-                    <Github className="h-3.5 w-3.5" />
-                    View Source Code
-                  </a>
-                )}
-              </div>
-            </div>
-
-            {/* Nav to other projects */}
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">More Projects</p>
-              {projects
-                .filter((p) => p.slug !== project.slug)
-                .slice(0, 3)
-                .map((p) => (
-                  <Link
-                    key={p.slug}
-                    href={`/projects/${p.slug}`}
-                    className="flex items-center justify-between rounded-lg border border-border bg-card p-3 text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all"
-                  >
-                    <span className="truncate pr-2">{p.title}</span>
-                    <ArrowLeft className="h-3 w-3 rotate-180 shrink-0" />
-                  </Link>
-                ))}
-            </div>
+              )}
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Footer */}
-      <footer className="border-t border-border/60 py-8 px-6">
-        <div className="container mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Prajwal Joshi
-          </p>
-          <nav className="flex items-center gap-5 text-xs text-muted-foreground">
-            <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-            <Link href="/projects" className="hover:text-foreground transition-colors">Projects</Link>
-            <Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <a href="https://github.com/ojaspj" target="_blank" rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors">
-              <Github className="h-3.5 w-3.5" />
-            </a>
-            <a href="https://www.linkedin.com/in/prajwal-joshi-3b3734156/" target="_blank" rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors">
-              <Linkedin className="h-3.5 w-3.5" />
-            </a>
-            <a href="mailto:joshiprajwal00@gmail.com"
-              className="text-muted-foreground hover:text-foreground transition-colors">
-              <Mail className="h-3.5 w-3.5" />
-            </a>
-          </div>
         </div>
-      </footer>
-    </div>
+      </section>
+    </>
   );
 }
