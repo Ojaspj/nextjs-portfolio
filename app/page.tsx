@@ -295,7 +295,7 @@ export default function Home() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="max-w-4xl mx-auto space-y-10"
+            className="max-w-5xl mx-auto space-y-10"
           >
             <motion.div variants={fade} className="space-y-1">
               <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -306,26 +306,37 @@ export default function Home() {
               </h2>
             </motion.div>
 
-            <motion.div variants={fade} className="space-y-7">
+            {/* Editorial rows */}
+            <motion.div variants={fade} className="border border-border rounded-xl overflow-hidden divide-y divide-border">
               {techCategories.map((cat) => (
-                <div key={cat.label} className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/70">
-                    {cat.label}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {cat.skills.map((skill) => (
-                      <div
-                        key={skill.name}
-                        className="group flex items-center gap-2 rounded-md border border-border bg-card px-3.5 py-2 text-sm font-medium transition-all duration-150 hover:border-foreground/25 hover:shadow-sm cursor-default select-none"
-                      >
-                        <img
-                          src={skill.image}
-                          alt={skill.name}
-                          className="h-4 w-4 object-contain shrink-0"
-                        />
-                        <span className="text-foreground/75 group-hover:text-foreground transition-colors">
-                          {skill.name}
-                        </span>
+                <div
+                  key={cat.label}
+                  className="group grid md:grid-cols-[160px_1fr] hover:bg-muted/40 transition-colors duration-150"
+                >
+                  {/* Category label */}
+                  <div className="flex items-center px-6 py-5 md:border-r border-border/60">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      {cat.label}
+                    </span>
+                  </div>
+
+                  {/* Skills list */}
+                  <div className="flex flex-wrap items-center gap-x-1 gap-y-1 px-6 py-4">
+                    {cat.skills.map((skill, i) => (
+                      <div key={skill.name} className="flex items-center">
+                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-background transition-colors cursor-default select-none">
+                          <img
+                            src={skill.image}
+                            alt={skill.name}
+                            className="h-[18px] w-[18px] object-contain shrink-0"
+                          />
+                          <span className="text-sm text-foreground/70 hover:text-foreground transition-colors">
+                            {skill.name}
+                          </span>
+                        </div>
+                        {i < cat.skills.length - 1 && (
+                          <span className="text-border select-none px-0.5">·</span>
+                        )}
                       </div>
                     ))}
                   </div>

@@ -181,7 +181,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Location</p>
-                  <p className="text-sm font-medium">India &middot; Remote</p>
+                  <p className="text-sm font-medium">Perth, Australia</p>
                 </div>
               </div>
             </div>
