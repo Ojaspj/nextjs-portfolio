@@ -7,7 +7,7 @@ import { Mail, MapPin, Send, Github, Linkedin } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { useToast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 import Link from "next/link"
 
 const fade = {
@@ -23,7 +23,6 @@ const stagger = {
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
-  const { toast } = useToast()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -33,10 +32,20 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    toast({ title: "Message sent!", description: "I'll get back to you shortly." })
-    setFormData({ name: "", email: "", subject: "", message: "" })
-    setIsSubmitting(false)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+      if (!res.ok) throw new Error("Failed to send")
+      toast.success("Message sent!", { description: "I'll get back to you shortly." })
+      setFormData({ name: "", email: "", subject: "", message: "" })
+    } catch {
+      toast.error("Something went wrong.", { description: "Please try emailing me directly at joshiprajwal00@gmail.com" })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
