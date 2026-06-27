@@ -95,19 +95,21 @@ export default function ProjectPage() {
               {/* Features */}
               <div>
                 <p
-                  className="font-mono uppercase text-slate mb-4"
+                  className="font-mono uppercase text-slate mb-5"
                   style={{ fontSize: "11px", letterSpacing: ".08em" }}
                 >
-                  Features
+                  What I Built
                 </p>
-                <ul className="space-y-2.5">
+                <ul className="space-y-5">
                   {project.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
+                    <li key={i} className="flex items-baseline gap-5">
                       <span
-                        className="shrink-0 rounded-full bg-slate/40 mt-[10px]"
-                        style={{ width: "5px", height: "5px" }}
-                      />
-                      <span className="text-slate" style={{ fontSize: "15px", lineHeight: 1.6 }}>
+                        className="font-mono text-brand shrink-0"
+                        style={{ fontSize: "12px" }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-ink" style={{ fontSize: "17px", lineHeight: 1.7 }}>
                         {feature}
                       </span>
                     </li>
@@ -116,7 +118,7 @@ export default function ProjectPage() {
               </div>
 
               {/* Screenshots */}
-              {project.screenshots && project.screenshots.length > 0 && (
+              {project.screenshots && project.screenshots.length > 0 && !project.screenshots[0].includes("placeholder") && (
                 <div>
                   <p
                     className="font-mono uppercase text-slate mb-4"

@@ -18,25 +18,52 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 8,
+    title: "SakhiStudio",
+    slug: "sakhi-studio",
+    description:
+      "A full-stack beauty studio web application with a public customer-facing storefront and a protected admin dashboard — built end to end from database schema to UI.",
+    image: "/placeholder.svg?height=400&width=600",
+    banner: "/placeholder.svg?height=800&width=1600",
+    tags: ["Full-Stack", "SaaS", "Supabase", "Next.js"],
+    features: [
+      "Built a dual-surface architecture — public storefront and protected admin dashboard — from a single Next.js codebase",
+      "Implemented Supabase Auth with Row-Level Security (RLS) policies for role-based access control across all database operations",
+      "Added a Next.js middleware proxy layer enforcing auth checks on every admin route at the edge",
+      "Designed a direct-to-storage image upload pipeline using signed URLs, bypassing server body limits and supporting files up to 10 MB",
+      "Delivered a full CMS — services CRUD, gallery manager, and testimonials manager — via Next.js Server Actions with server-side auth on every mutation",
+    ],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "PostgreSQL",
+      "React Hook Form",
+      "Shadcn",
+    ],
+    demoUrl: "https://sakhistudio.vercel.app",
+    githubUrl: "null",
+    process:
+      "SakhiStudio is a complete full-stack web application for a beauty studio, built end to end — from database schema design to the final UI. The platform has two sides: a public storefront for customers and a protected admin dashboard for the studio owner. I implemented Supabase Auth with Row-Level Security (RLS) policies for role-based access control, and added a Next.js middleware proxy layer to secure every admin route. Image uploads use a direct-to-storage approach with signed URLs, bypassing server body limits and supporting files up to 10 MB. The content management system covers services, gallery, and testimonials — all powered by Next.js Server Actions with server-side auth checks enforced on every mutation.",
+    screenshots: [],
+  },
+  {
     id: 1,
     title: "Software Agency Website Template",
     slug: "software-agency-website-template",
     description:
-      "A comprehensive website template for software agencies, featuring service highlights, course listings, and a modern UI.",
+      "A production-ready website template for software agencies and SaaS startups, covering service pages, a course catalog, and authentication flows.",
     image:
       "https://res.cloudinary.com/djmtejqkc/image/upload/v1753777596/software-web-1_fls60k.png",
     banner:
       "https://res.cloudinary.com/djmtejqkc/image/upload/v1753777596/software-web-1_fls60k.png",
-    tags: ["Website", "Template", "Saas", "UI/UX"],
+    tags: ["Website", "Template", "SaaS", "UI/UX"],
     features: [
-      "🧩 Homepage with service highlights",
-      "📦 Service detail sections",
-      "🎓 Courses listing & details",
-      "🛒 Course checkout flow (UI only)",
-      "🔐 Authentication (Login/Signup pages)",
-      "📞 Contact page with form",
-      "📱 Responsive design for all devices",
-      "🎨 Modern UI using shadcn/ui components",
+      "Built a multi-page marketing site using Next.js App Router with service highlights, course catalog, and a checkout flow",
+      "Implemented authentication UI (login/signup) with client-side form validation",
+      "Composed the entire UI from shadcn/ui primitives, maintaining a consistent design system across all pages",
+      "Delivered full mobile responsiveness using Tailwind CSS with a utility-first layout approach",
     ],
     techStack: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Shadcn"],
     demoUrl: "https://software-company-web-template.vercel.app/",
@@ -56,29 +83,25 @@ export const projects: Project[] = [
     title: "Recipe Finder App",
     slug: "recipe-finder-app",
     description:
-      "A unified dashboard for managing multiple social media accounts, scheduling posts, and analyzing engagement metrics.",
+      "A cross-platform mobile app for discovering and browsing recipes, with categorized browsing, detailed ingredient views, and video instructions.",
     image:
       "https://res.cloudinary.com/djmtejqkc/image/upload/v1753873566/Screenshot_2025-07-30_at_7.04.04_PM_vfwfkf.png",
     banner:
       "https://res.cloudinary.com/djmtejqkc/image/upload/v1753873566/Screenshot_2025-07-30_at_7.04.04_PM_vfwfkf.png",
-    tags: ["Mobile App", "Recipe", "Food", "React Native"],
+    tags: ["Mobile App", "React Native", "Food", "API"],
     features: [
-      "🔍 Recipe search using public recipe API",
-      "📖 Detailed recipe pages with ingredients and instructions",
-      "🍽️ Categories for vegetarian, non-vegetarian, and bakery items",
-      "🎥 Video instructions for selected recipes",
-      "💡 Ingredients and cooking steps listed clearly",
-      "🎨 Smooth and modern UI with React Native Reanimated",
-      "📱 Cross-platform support for iOS and Android",
+      "Integrated a third-party recipe API using Axios with categorized browsing across vegetarian, non-vegetarian, and bakery dishes",
+      "Built a cross-platform mobile UI targeting both iOS and Android from a single React Native and Expo codebase",
+      "Implemented smooth list and page transition animations using React Native Reanimated",
+      "Styled with NativeWind (Tailwind CSS for React Native) for a consistent, utility-first design system",
     ],
     techStack: [
       "React Native",
       "Expo",
-      "React",
       "JavaScript",
       "React Native Reanimated",
       "Axios",
-      "Nativewind CSS",
+      "NativeWind",
     ],
     demoUrl: "null",
     githubUrl: "https://github.com/Ojaspj/recipe-app-react-native",
@@ -92,69 +115,24 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 2,
-    title: "Film Guide App",
-    slug: "film-guide-app",
-    description:
-      "A comprehensive film guide application that provides users with detailed information about movies, including cast, crew, and reviews.",
-    image:
-      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753870933/Screenshot_2025-07-30_at_6.19.56_PM_ohqudv.png",
-    banner:
-      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753870933/Screenshot_2025-07-30_at_6.19.56_PM_ohqudv.png",
-    tags: ["Movies", "Entertainment", "Search", "API"],
-    features: [
-      "🔍 Movie search with live results",
-      "📚 Detailed movie information",
-      "⭐️ Ratings and reviews",
-      "🎥 Poster and media gallery",
-      "📱 Fully responsive design",
-      "⚡️ Fast and smooth UI",
-    ],
-    techStack: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "API Integration",
-    ],
-    demoUrl: "https://film-guide.vercel.app/",
-    githubUrl: "https://github.com/example/project",
-    process:
-      "A lightweight and intuitive movie search application built during my internship period. Users can search for any film by name and instantly view detailed information including title, synopsis, rating, release date, and poster. The app fetches real-time data from The Movie Database (TMDb) API and displays it in a clean, responsive UI, making it a perfect tool for film enthusiasts.",
-    screenshots: [
-      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753870933/Screenshot_2025-07-30_at_6.19.56_PM_ohqudv.png",
-      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753870935/Screenshot_2025-07-30_at_6.20.31_PM_ddrucf.png",
-      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753870935/Screenshot_2025-07-30_at_6.20.58_PM_ftfohh.png",
-    ],
-  },
-  {
     id: 3,
     title: "Investiaa",
     slug: "investiaa",
     description:
-      "An online ecosystem designed to empower startups by connecting them with incubators, angel investors, venture capitalists, and academic institutions.",
+      "An online ecosystem connecting startups with incubators, angel investors, venture capitalists, and academic institutions — built as a Software Engineer on the core product team.",
     image: "/placeholder.svg?height=400&width=600",
     banner: "/placeholder.svg?height=800&width=1600",
-    tags: ["Startup", "Investment", "Networking", "AI"],
+    tags: ["Startup", "Investment", "Networking", "Full-Stack"],
     features: [
-      "🤝 Connection system between startups, investors, and incubators",
-      "🧑‍🏫 Academic and mentorship integration",
-      "🔍 Search and filter functionality",
-      "📄 Startup profile pages with detailed info",
-      "🛠 User authentication",
-      "🧾 KYC verification process",
-      "🛠 Admin dashboard to manage users",
-      "📱 Responsive design for all devices",
-      "️🎨 Modern UI with shadcn/ui components",
-      "🎯 Focused on user experience and accessibility",
-      "🎨 Clean, accessible, and responsive UI",
-      "🚀 Built for scale and performance",
+      "Contributed frontend features and GraphQL API integrations as a Software Engineer on the core product team",
+      "Built startup and investor profile pages with search and filter functionality using React and Next.js",
+      "Developed and integrated GraphQL queries and mutations connecting the frontend to a PostgreSQL-backed Node.js API",
+      "Implemented KYC verification flow and admin dashboard components for user management",
     ],
-
     techStack: [
       "React",
       "Next.js",
-      "GraphQL API",
+      "GraphQL",
       "Tailwind CSS",
       "Node.js",
       "PostgreSQL",
@@ -163,62 +141,22 @@ export const projects: Project[] = [
     githubUrl: "null",
     process:
       "Investiaa is an online ecosystem designed to empower startups by connecting them with incubators, angel investors, venture capitalists, and academic institutions. The platform enables seamless collaboration, access to funding, mentorship, and growth opportunities. I contributed to this project while working as a Software Engineer at Investiaa, focusing primarily on frontend development and also contributing to backend GraphQL APIs.",
-    screenshots: [
-      "/placeholder.svg?height=800&width=1200",
-      "/placeholder.svg?height=800&width=1200",
-    ],
+    screenshots: [],
   },
-  {
-    id: 4,
-    title: "To-Do App",
-    slug: "to-do-app",
-    description:
-      "A simple and intuitive to-do application built with Chakra UI and local storage, allowing users to manage tasks efficiently.",
-    image:
-      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753872748/Screenshot_2025-07-30_at_6.50.36_PM_jcalzc.png",
-    banner:
-      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753872748/Screenshot_2025-07-30_at_6.50.36_PM_jcalzc.png",
-    tags: ["Productivity", "Task Management", "Chakra UI"],
-    features: [
-      "✅ Task creation and deletion",
-      "💾 Data persistence using localStorage",
-      "🌙 Dark/Light mode toggle",
-      "⚡️ Fast performance with Vite",
-      "📱 Responsive design",
-    ],
-    techStack: [
-      "React",
-      "JavaScript",
-      "Tailwind CSS",
-      "Chakra UI",
-      "Local Storage",
-    ],
-    demoUrl: "https://todoapp-ojaspj.vercel.app/",
-    githubUrl: "null",
-    process:
-      "A simple and responsive to-do list application built using React and Chakra UI. This was my first project exploring Chakra’s component system and theme toggling. The app stores all tasks in the browser using localStorage, ensuring persistence without requiring login.",
-    screenshots: [
-      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753872748/Screenshot_2025-07-30_at_6.50.36_PM_jcalzc.png",
-      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753872748/Screenshot_2025-07-30_at_6.50.55_PM_xclhdy.png",
-      "https://res.cloudinary.com/djmtejqkc/image/upload/v1753872748/Screenshot_2025-07-30_at_6.50.11_PM_y7lvcr.png",
-    ],
-  },
-
   {
     id: 6,
     title: "Personal Loan Tracker",
     slug: "personal-loan-tracker",
     description:
-      "A personal loan tracking application that helps users manage their loans effectively.",
+      "A Firebase-backed personal finance app for tracking loans, payments, and interest calculations — with per-user data isolation and a real-time dashboard.",
     image: "/placeholder.svg?height=400&width=600",
     banner: "/placeholder.svg?height=800&width=1600",
-    tags: ["Finance", "Productivity"],
+    tags: ["Finance", "Productivity", "Firebase"],
     features: [
-      "Loan application management",
-      "Payment tracking",
-      "Interest rate calculator",
-      "Document upload and storage",
-      "User-friendly dashboard",
+      "Built a Firestore-backed data layer for real-time loan records, payment history, and running balance tracking",
+      "Designed a compound interest calculator with amortization schedule output",
+      "Secured all user data with Firebase Authentication, scoping Firestore reads and writes strictly per user",
+      "Shipped to production on Vercel with a TypeScript and Next.js project structure",
     ],
     techStack: [
       "React",
@@ -227,31 +165,27 @@ export const projects: Project[] = [
       "Tailwind CSS",
       "Firebase",
       "Firestore",
-
     ],
     demoUrl: "https://loan-tracker-rho.vercel.app/",
     githubUrl: "https://github.com/Ojaspj/loan-tracker",
-    screenshots: [
-      "/placeholder.svg?height=800&width=1200",
-      "/placeholder.svg?height=800&width=1200",
-      "/placeholder.svg?height=800&width=1200",
-    ],
+    process:
+      "A personal finance tool for tracking loans and payments. Built with Firebase and Firestore for real-time data persistence, with Firebase Auth ensuring each user's data is fully isolated. The app includes a compound interest calculator and amortization schedule so users can understand their repayment timeline at a glance.",
+    screenshots: [],
   },
   {
     id: 7,
     title: "Real Estate Listing Platform",
     slug: "real-estate-platform",
     description:
-      "A modern real estate platform with advanced search capabilities, virtual tours, and agent-client communication tools.",
+      "A modern real estate platform with property search, map-based browsing, and agent-client communication tools.",
     image: "/placeholder.svg?height=400&width=600",
     banner: "/placeholder.svg?height=800&width=1600",
     tags: ["Real Estate", "Marketplace", "Maps"],
     features: [
-      "Advanced property search",
-      "Virtual property tours",
-      "Agent-client messaging",
-      "Saved favorites",
-      "Neighborhood insights",
+      "Built a property listing and search UI with filter controls for location, price range, and property type using Next.js",
+      "Integrated Google Maps API for property location rendering and neighborhood map views",
+      "Designed a PostgreSQL schema covering property listings, agent profiles, and saved favourites",
+      "Implemented an agent-client messaging flow with a real-time conversation UI",
     ],
     techStack: [
       "React",
@@ -261,12 +195,10 @@ export const projects: Project[] = [
       "Google Maps API",
       "PostgreSQL",
     ],
-    demoUrl: "https://example.com/demo",
-    githubUrl: "https://github.com/example/project",
-    screenshots: [
-      "/placeholder.svg?height=800&width=1200",
-      "/placeholder.svg?height=800&width=1200",
-      "/placeholder.svg?height=800&width=1200",
-    ],
+    demoUrl: "null",
+    githubUrl: "null",
+    process:
+      "A full-stack real estate platform for browsing and listing properties. The app integrates Google Maps for location-based property discovery and includes a PostgreSQL-backed data layer for listings, agents, and user favourites. Built with Next.js and TypeScript for a type-safe, scalable codebase.",
+    screenshots: [],
   },
 ];

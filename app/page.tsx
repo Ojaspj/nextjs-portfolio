@@ -322,23 +322,23 @@ export default function Home() {
               {/* Left: bio */}
               <motion.div variants={fade} className="space-y-5 text-[18px] text-ink" style={{ lineHeight: 1.7 }}>
                 <p>
-                  Hi, I&apos;m Prajwal — a frontend developer with a strong eye for
-                  clean design and a growing passion for full-stack development.
-                  I craft responsive, user-friendly interfaces using React,
-                  Next.js, and Tailwind CSS.
+                  Hi, I&apos;m Prajwal — a full-stack software developer with 3+
+                  years of experience building web and mobile applications end-to-end.
+                  From pixel-perfect UIs to backend APIs and database design, I own
+                  the full product lifecycle.
                 </p>
                 <p>
-                  I believe in writing clean, scalable code and designing intuitive
-                  interfaces that feel effortless to use. Whether it&apos;s a
-                  single-page app or a complete SaaS product, I keep things
-                  simple, efficient, and impactful.
+                  I work across the stack with React, Next.js, Node.js, GraphQL,
+                  PostgreSQL, and Firebase — and I care deeply about writing clean,
+                  maintainable code that scales. I&apos;m equally comfortable
+                  designing a system architecture and obsessing over a button state.
                 </p>
                 <p>
-                  I&apos;m building a collection of apps under the{" "}
+                  I&apos;m building a collection of products under the{" "}
                   <span className="font-medium">PrajwalApps</span>{" "}
-                  brand — turning ideas into polished, usable products. Previously a
-                  Software Engineer at Investiaa, contributing to their startup
-                  ecosystem platform with React, Next.js, and GraphQL.
+                  brand — turning ideas into polished, shippable software. Previously
+                  a Software Engineer at Investiaa, where I built frontend features
+                  and contributed to GraphQL APIs on a startup ecosystem platform.
                 </p>
               </motion.div>
 
